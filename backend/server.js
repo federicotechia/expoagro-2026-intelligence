@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const { scrapeAllNews } = require('./scraper');
+const supabase = require('./supabaseClient');
 
 const app = express();
 const PORT = 3001;
@@ -18,23 +19,59 @@ let cache = {
     isUpdating: false,
 };
 
-// Carga el cache desde disco al arrancar
-function loadCacheFromDisk() {
+// Carga el cache desde disco al arrancar (Fallback local)
+async function loadCache() {
+    // 1. Intentar cargar desde Supabase
+    try {
+        if (process.env.SUPABASE_URL) {
+            const { data, error } = await supabase
+                .from('noticias')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (data && data.length > 0) {
+                cache.noticias = data;
+                cache.lastUpdated = new Date().toISOString();
+                console.log(`🌐 Cache cargado desde Supabase: ${data.length} noticias`);
+                return;
+            }
+        }
+    } catch (e) {
+        console.warn('⚠️  Supabase no disponible, usando disco:', e.message);
+    }
+
+    // 2. Fallback disco
     try {
         if (fs.existsSync(CACHE_FILE)) {
             const data = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
             cache.noticias = data.noticias || [];
             cache.lastUpdated = data.lastUpdated || null;
             console.log(
-                `📂 Cache cargado: ${cache.noticias.length} noticias (${cache.lastUpdated})`
+                `📂 Cache cargado desde Disco: ${cache.noticias.length} noticias`
             );
         }
     } catch (e) {
-        console.warn('⚠️  No se pudo leer el cache:', e.message);
+        console.warn('⚠️  No se pudo leer el cache de disco:', e.message);
     }
 }
 
-function saveCacheToDisk() {
+async function saveCache(nuevasNoticias) {
+    // 1. Guardar en Supabase (si está configurado)
+    try {
+        if (process.env.SUPABASE_URL && nuevasNoticias.length > 0) {
+            // Upsert usa la URL como clave única
+            const { error } = await supabase
+                .from('noticias')
+                .upsert(nuevasNoticias, { onConflict: 'url' });
+
+            if (error) throw error;
+            console.log(`🚀 Sincronizado con Supabase (${nuevasNoticias.length} registros)`);
+        }
+    } catch (e) {
+        console.error('❌ Error guardando en Supabase:', e.message);
+    }
+
+    // 2. Guardar en Disco (Persistencia local)
     try {
         fs.writeFileSync(
             CACHE_FILE,
@@ -45,7 +82,7 @@ function saveCacheToDisk() {
             )
         );
     } catch (e) {
-        console.warn('⚠️  No se pudo guardar el cache:', e.message);
+        console.warn('⚠️  No se pudo guardar el cache en disco:', e.message);
     }
 }
 
@@ -135,8 +172,8 @@ app.post('/api/refresh', async (req, res) => {
 
         cache.noticias = unicas;
         cache.lastUpdated = new Date().toISOString();
-        saveCacheToDisk();
-        console.log(`✅ Cache actualizado: ${unicas.length} noticias. (Eran ${cache.noticias.length} antes, agregamos nuevas no duplicadas)`);
+        await saveCache(nuevasNoticias);
+        console.log(`✅ Cache actualizado: ${unicas.length} noticias.`);
     } catch (err) {
         console.error('❌ Error durante el scraping:', err.message);
     } finally {
@@ -159,7 +196,7 @@ app.get('/api/mapa', (req, res) => {
 });
 
 // ─── Start ──────────────────────────────────────────────────────────────────────
-loadCacheFromDisk();
+loadCache();
 
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
@@ -176,7 +213,7 @@ if (process.env.NODE_ENV !== 'production') {
                 .then((noticias) => {
                     cache.noticias = noticias;
                     cache.lastUpdated = new Date().toISOString();
-                    saveCacheToDisk();
+                    saveCache(noticias);
                     console.log(`✅ ${noticias.length} noticias cargadas`);
                 })
                 .catch((err) => console.error('❌ Error scraping inicial:', err.message))
