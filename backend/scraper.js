@@ -12,6 +12,8 @@ const KEYWORDS_EXPOAGRO = [
   'expo agro',
 ];
 
+const EXCLUSIONES_ANIOS = ['2025', '2024', '2023', '2022', '2021', '2020'];
+
 const CATEGORIAS = [
   'Sembradoras',
   'Tractores',
@@ -85,7 +87,21 @@ function isExpoAgro2026(article) {
   const hasKeyword = KEYWORDS_EXPOAGRO.some(
     (kw) => titleLower.includes(kw) || urlLower.includes(kw)
   );
-  return hasKeyword;
+
+  if (!hasKeyword) return false;
+
+  // Si dice 2026 explícitamente, es muy probable que sea correcta
+  const mention2026 = titleLower.includes('2026') || urlLower.includes('2026');
+
+  // Si menciona un año viejo y NO menciona 2026, la descartamos
+  const mentionOldYear = EXCLUSIONES_ANIOS.some(yr => titleLower.includes(yr) || urlLower.includes(yr));
+
+  if (mentionOldYear && !mention2026) {
+    return false;
+  }
+
+  // Si no menciona ningún año pero tiene la keyword, la dejamos pasar (puede ser una noticia actual sin año en el título)
+  return true;
 }
 
 async function scrapeArticleDetail(page, url) {
