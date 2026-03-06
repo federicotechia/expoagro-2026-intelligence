@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = '/api';
 
 export default function App() {
   const [noticias, setNoticias] = useState([]);

@@ -160,26 +160,31 @@ app.get('/api/mapa', (req, res) => {
 
 // ─── Start ──────────────────────────────────────────────────────────────────────
 loadCacheFromDisk();
-app.listen(PORT, () => {
-    console.log(`\n🌾 ExpoAgro 2026 News API corriendo en http://localhost:${PORT}`);
-    console.log(`   GET  /api/noticias  → lista de noticias`);
-    console.log(`   GET  /api/status   → estado del cache`);
-    console.log(`   POST /api/refresh  → scrapear ahora\n`);
 
-    // Auto-scraping inicial si el cache está vacío
-    if (cache.noticias.length === 0) {
-        console.log('📡 Cache vacío → iniciando scraping automático...');
-        cache.isUpdating = true;
-        scrapeAllNews(10)
-            .then((noticias) => {
-                cache.noticias = noticias;
-                cache.lastUpdated = new Date().toISOString();
-                saveCacheToDisk();
-                console.log(`✅ ${noticias.length} noticias cargadas`);
-            })
-            .catch((err) => console.error('❌ Error scraping inicial:', err.message))
-            .finally(() => {
-                cache.isUpdating = false;
-            });
-    }
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`\n🌾 ExpoAgro 2026 News API corriendo en http://localhost:${PORT}`);
+        console.log(`   GET  /api/noticias  → lista de noticias`);
+        console.log(`   GET  /api/status   → estado del cache`);
+        console.log(`   POST /api/refresh  → scrapear ahora\n`);
+
+        // Auto-scraping inicial si el cache está vacío
+        if (cache.noticias.length === 0) {
+            console.log('📡 Cache vacío → iniciando scraping automático...');
+            cache.isUpdating = true;
+            scrapeAllNews(10)
+                .then((noticias) => {
+                    cache.noticias = noticias;
+                    cache.lastUpdated = new Date().toISOString();
+                    saveCacheToDisk();
+                    console.log(`✅ ${noticias.length} noticias cargadas`);
+                })
+                .catch((err) => console.error('❌ Error scraping inicial:', err.message))
+                .finally(() => {
+                    cache.isUpdating = false;
+                });
+        }
+    });
+}
+
+module.exports = app;

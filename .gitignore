@@ -4,8 +4,7 @@ backend/node_modules/
 frontend/node_modules/
 
 # Cache files
-backend/noticias_cache.json
-backend/ubicaciones.json
+# Se deja noticias_cache.json y ubicaciones.json para el deploy
 backend/expositores.txt
 backend/map_coords.json
 
