@@ -29,6 +29,11 @@ async function loadCache() {
                 .select('*')
                 .order('created_at', { ascending: false });
 
+            if (error) {
+                console.error('❌ Error cargando desde Supabase:', error.message);
+                throw error;
+            }
+
             if (data && data.length > 0) {
                 cache.noticias = data;
                 cache.lastUpdated = new Date().toISOString();

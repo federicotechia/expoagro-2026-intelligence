@@ -183,7 +183,7 @@ async function scrapeListPage(page, url) {
       const imgEl = card.querySelector('img');
       const imageThumb = imgEl ? imgEl.src : null;
 
-      items.push({ titulo, url: linkUrl, imageThumb });
+      items.push({ titulo, url: linkUrl, imagethumb: imageThumb });
     });
 
     return items;
@@ -255,7 +255,6 @@ async function scrapeAllNews(maxPages = 3) {
             ...art,
             ...detail,
             fuente: 'Maquinac',
-            seccion: startUrl.includes('exposicion') ? 'Exposiciones' : 'General',
             categoria,
             marca,
             ubicacion
