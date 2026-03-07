@@ -5,7 +5,6 @@ const path = require('path');
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-// Logic copied from scraper.js (simplified for update)
 const ubicacionesExpo = JSON.parse(fs.readFileSync(path.join(__dirname, 'ubicaciones.json'), 'utf8'));
 
 const CATEGORIA_MAP = {
@@ -21,11 +20,18 @@ const CATEGORIA_MAP = {
     'aplicadora': 'Incorporadoras'
 };
 
+const MARCAS_CONOCIDAS = [
+    'Crucianelli', 'Erca', 'Pierobon', 'Agrometal', 'BTI Agri',
+    'John Deere', 'Case IH', 'New Holland', 'Pauny', 'Valtra',
+    'Massey Ferguson', 'Pla', 'Metalfor', 'Jacto', 'Caimán',
+    'Plantium', 'Abelardo Cuffia', 'Agrofly', 'VAF'
+];
+
 function normalizeText(text) {
     if (!text) return '';
     return text
-        .normalize('NFD') // Descomponer acentos
-        .replace(/[\u0300-\u036f]/g, '') // Quitar los simbolos de acento
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase()
         .trim();
 }
@@ -43,14 +49,14 @@ function getBetterInfo(titulo, desc) {
 
     const hasBrand = (textNormalized, brandCore) => {
         const normalizedBrand = normalizeText(brandCore);
-        if (normalizedBrand.length < 3) return false;
+        if (!normalizedBrand || normalizedBrand.length < 3) return false;
 
         const escapedBrand = normalizedBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
         return regex.test(textNormalized);
     };
 
-    // 1. Título
+    // 1. Título con marcas del PDF
     for (let b of sortedBrands) {
         if (hasBrand(titleNorm, b)) {
             marca = b;
@@ -60,13 +66,23 @@ function getBetterInfo(titulo, desc) {
         }
     }
 
-    // 2. Descripción
+    // 2. Descripción con marcas del PDF
     if (marca === 'Otra') {
         for (let b of sortedBrands) {
             if (hasBrand(descNorm, b)) {
                 marca = b;
                 ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
                 rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+                break;
+            }
+        }
+    }
+
+    // 3. Fallback a MARCAS_CONOCIDAS
+    if (marca === 'Otra') {
+        for (let m of MARCAS_CONOCIDAS) {
+            if (hasBrand(fullNorm, m)) {
+                marca = m;
                 break;
             }
         }
@@ -105,16 +121,21 @@ async function fixExistingNews() {
     console.log(`Encontradas ${noticias.length} noticias. Procesando...`);
 
     for (const n of noticias) {
-        // Solo corregir si es "Otra" o "TBD" o si queremos refrescar todo
         const { marca, ubicacion, categoria } = getBetterInfo(n.titulo, n.descripcion);
 
-        if (marca !== n.marca || ubicacion !== n.ubicacion) {
-            console.log(`Updating [${n.titulo.substring(0, 30)}...] -> ${marca} (${ubicacion})`);
-            await supabase.from('noticias').update({ marca, ubicacion, categoria }).eq('url', n.url);
+        console.log(`[${n.titulo.substring(0, 40)}] -> Result: ${marca} (${ubicacion})`);
+
+        const { error: updateError } = await supabase
+            .from('noticias')
+            .update({ marca, ubicacion, categoria })
+            .eq('id', n.id);
+
+        if (updateError) {
+            console.error(`Error actualizando ${n.id}:`, updateError.message);
         }
     }
 
-    console.log('✅ Base de datos optimizada con el nuevo diccionario del PDF.');
+    console.log('✅ Base de datos optimizada.');
 }
 
 fixExistingNews();

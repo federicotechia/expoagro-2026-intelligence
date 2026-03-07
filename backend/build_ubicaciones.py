@@ -13,17 +13,24 @@ def normalize_text(text):
     return text.lower().strip()
 
 def extract_core_brand(name):
-    # Eliminar S.A., SRL, S.R.L., etc.
-    name = re.sub(r'\s+(S\.A\.|SRL|S\.R\.L\.|S\.A\.I\.|S\.A\.|S\.A\.C\.|SA|SOCIEDAD ANONIMA)\s*$', '', name, flags=re.IGNORECASE)
-    # Eliminar "INDUSTRIAS", "AGRO", "MÁQUINAS" si son prefijos comunes para llegar al núcleo
-    prefixes = ['INDUSTRIAS', 'MAQUINAS AGRICOLAS', 'MAQUINARIA', 'AGRO', 'METALURGICA', 'IMPLEMENTOS']
     core = name.upper()
+    # Eliminar puntuación al final
+    core = core.rstrip('.')
+    # Eliminar sufijos legales comunes
+    core = re.sub(r'\s+(S\.A\.|SRL|S\.R\.L\.|S\.A\.I\.|S\.A\.|S\.A\.C\.|SA|SOCIEDAD ANONIMA|S\.R\.L)\s*$', '', core, flags=re.IGNORECASE)
+    core = core.rstrip('.')
+    
+    # Prefijos comunes a ignorar
+    prefixes = ['INDUSTRIAS', 'MAQUINAS AGRICOLAS', 'MAQUINARIA', 'AGRO', 'METALURGICA', 'IMPLEMENTOS']
     for p in prefixes:
         if core.startswith(p + ' '):
             core = core[len(p)+1:].strip()
             break
+            
+    # Casos muy específicos de limpieza
+    core = re.sub(r'\s+S\.A$', '', core)
     
-    # También limpiar basura como "**" o "/"
+    # Limpiar asteriscos y basura
     core = re.sub(r'[*]+', '', core)
     return core.strip()
 

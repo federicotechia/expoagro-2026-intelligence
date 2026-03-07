@@ -37,7 +37,13 @@ async function loadCache() {
             if (data && data.length > 0) {
                 cache.noticias = data;
                 cache.lastUpdated = new Date().toISOString();
-                console.log(`🌐 Cache cargado desde Supabase: ${data.length} noticias`);
+                console.log(`🌐 Cache cargado desde Supabase: ${data.length} noticias (FRESH)`);
+
+                // Borrar cache local para evitar confusiones
+                if (fs.existsSync(CACHE_FILE)) {
+                    fs.unlinkSync(CACHE_FILE);
+                    console.log('🧹 Cache local eliminado para asegurar sincro con Supabase.');
+                }
                 return;
             }
         }
