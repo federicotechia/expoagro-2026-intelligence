@@ -21,10 +21,10 @@ const CATEGORIA_MAP = {
 };
 
 const MARCAS_CONOCIDAS = [
-    'Crucianelli', 'Erca', 'Pierobon', 'Agrometal', 'BTI Agri',
-    'John Deere', 'Case IH', 'New Holland', 'Pauny', 'Valtra',
-    'Massey Ferguson', 'Pla', 'Metalfor', 'Jacto', 'Caimán',
-    'Plantium', 'Abelardo Cuffia', 'Agrofly', 'VAF'
+    'CRUCIANELLI', 'ERCA', 'PIEROBON', 'AGROMETAL', 'BTI AGRI',
+    'JOHN DEERE', 'CASE IH', 'NEW HOLLAND', 'PAUNY', 'VALTRA',
+    'MASSEY FERGUSON', 'PLA', 'METALFOR', 'JACTO', 'CAIMAN',
+    'PLANTIUM', 'ABELARDO CUFFIA', 'AGROFLY', 'VAF'
 ];
 
 function normalizeText(text) {
@@ -49,7 +49,7 @@ function getBetterInfo(titulo, desc) {
 
     const hasBrand = (textNormalized, brandCore) => {
         const normalizedBrand = normalizeText(brandCore);
-        if (!normalizedBrand || normalizedBrand.length < 3) return false;
+        if (!normalizedBrand || normalizedBrand.length < 2) return false;
 
         const escapedBrand = normalizedBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');

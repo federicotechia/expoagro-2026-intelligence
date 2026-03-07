@@ -14,7 +14,7 @@
     "ubicacion": "Lote Aire Libre - 1353",
     "rubros": "Mangas, casillas de operar, bretes, cargadores, tranqueras"
   },
-  "AGROMETAL S.A.I": {
+  "AGROMETAL S A I": {
     "display": "AGROMETAL S.A.I.",
     "ubicacion": "Lote Aire Libre - 840",
     "rubros": "Sembradoras, máquinas agrícolas, accesorios de sembradoras"
@@ -29,22 +29,22 @@
     "ubicacion": "Carpa 1 - B08",
     "rubros": "Agroindustria, comercio exterior, importaciones, consultoría"
   },
-  "AGUACOLF, INGENIERIA EN AGUA": {
+  "AGUACOLF INGENIERIA EN AGUA": {
     "display": "AGUACOLF, INGENIERIA EN AGUA",
     "ubicacion": "Carpa 2 - K08",
     "rubros": "Fabricante"
   },
   "AKRON": {
-    "display": "AKRON",
+    "display": "Akron",
     "ubicacion": "Lote Aire Libre - 710",
-    "rubros": "Tolvas, extracción y embolsado, fertilización orgánica, drones"
+    "rubros": "Tolvas"
   },
   "ALLARIA AGROFINANZAS": {
     "display": "ALLARIA AGROFINANZAS S.A.",
     "ubicacion": "Carpa 2 - P03",
     "rubros": "Servicios agropecuarios, financiación, fideicomisos"
   },
-  "ALBERTO J. SPINSANTI SAL": {
+  "ALBERTO J SPINSANTI SAL": {
     "display": "ALBERTO J. SPINSANTI SAL",
     "ubicacion": "Lote Aire Libre - 224",
     "rubros": "Plásticos para el agro"
@@ -70,11 +70,11 @@
     "rubros": "Secadoras de grano, calefacción, riego, servicios"
   },
   "AMAZONE": {
-    "display": "AMAZONE",
+    "display": "Amazone (Capei)",
     "ubicacion": "Lote Aire Libre - 1058",
-    "rubros": "Máquinas agrícolas, agroindustria, ag. de precisión"
+    "rubros": "Maquinaria"
   },
-  "AMERICAN VIAL / AGROCHERY": {
+  "AMERICAN VIAL AGROCHERY": {
     "display": "AMERICAN VIAL / AGROCHERY",
     "ubicacion": "Lote Aire Libre - 1010",
     "rubros": "Máquinas viales, herramientas, maquinaria"
@@ -89,7 +89,7 @@
     "ubicacion": "Carpa 2 - 506",
     "rubros": "Máquinas, herramientas, eq. industrial, tecnología"
   },
-  "ANDERSCH INGENIERIA - AGRO": {
+  "ANDERSCH INGENIERIA AGRO": {
     "display": "ANDERSCH INGENIERIA - AGRO",
     "ubicacion": "Lote Aire Libre - 1349",
     "rubros": "Instalaciones ganaderas, industria, eq. ganadero"
@@ -100,9 +100,9 @@
     "rubros": "Telecomunicaciones, video vigilancia, renovables, infra. IT"
   },
   "APACHE": {
-    "display": "APACHE S.A",
+    "display": "Apache",
     "ubicacion": "Lote Aire Libre - 650",
-    "rubros": "Sembradoras, máquinas y herramientas, fabricante"
+    "rubros": "Sembradoras"
   },
   "ARAG": {
     "display": "ARAG SRL",
@@ -119,7 +119,7 @@
     "ubicacion": "Lote Aire Libre - 1130",
     "rubros": "Siderurgia"
   },
-  "ARGENTRIGO - ASOC. ARG. TRIGO": {
+  "ARGENTRIGO ASOC ARG TRIGO": {
     "display": "ARGENTRIGO - ASOC. ARG. TRIGO",
     "ubicacion": "Entidad",
     "rubros": "Asociaciones, entidades e instituciones"
@@ -130,51 +130,51 @@
     "rubros": "Asociaciones, entidades e instituciones"
   },
   "ASCANELLI": {
-    "display": "ASCANELLI S.A.",
+    "display": "Ascanelli",
     "ubicacion": "Lote Aire Libre - N60",
-    "rubros": "Tolvas, sembradoras, mixers, embolsadora grano seco"
+    "rubros": "Tolvas"
   },
-  "ASOC. CRIADORES SENEPOL": {
+  "ASOC CRIADORES SENEPOL": {
     "display": "ASOC. CRIADORES SENEPOL",
     "ubicacion": "Sector Ganadería",
     "rubros": "Asociaciones, ganadería, cabañas"
   },
-  "ASOC. CRIADORES HEREFORD": {
+  "ASOC CRIADORES HEREFORD": {
     "display": "ASOC. CRIADORES HEREFORD",
     "ubicacion": "Sector Ganadería",
     "rubros": "Asociaciones, ganadería"
   },
-  "ASOC. CRIADORES LIMOUSIN": {
+  "ASOC CRIADORES LIMOUSIN": {
     "display": "ASOC. CRIADORES LIMOUSIN",
     "ubicacion": "Sector Ganadería",
     "rubros": "Ganadería"
   },
-  "ASOCIACIÓN ARG. CARRETERAS": {
+  "ASOCIACION ARG CARRETERAS": {
     "display": "ASOCIACIÓN ARG. CARRETERAS",
     "ubicacion": "Entidad",
     "rubros": "Asociaciones, educación, transporte de carga"
   },
-  "ASOCIACIÓN BRAFORD ARGENTINA": {
+  "ASOCIACION BRAFORD ARGENTINA": {
     "display": "ASOCIACIÓN BRAFORD ARGENTINA",
     "ubicacion": "Sector Ganadería",
     "rubros": "Asociaciones, ganadería"
   },
-  "ASOCIACIÓN CONCIENCIA": {
+  "ASOCIACION CONCIENCIA": {
     "display": "ASOCIACIÓN CONCIENCIA",
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "ASOC. CRIADORES BRAHMAN": {
+  "ASOC CRIADORES BRAHMAN": {
     "display": "ASOC. CRIADORES BRAHMAN",
     "ubicacion": "Sector Ganadería",
     "rubros": "Asociaciones, ganadería"
   },
-  "ASOC. GANADO SANGA": {
+  "ASOC GANADO SANGA": {
     "display": "ASOC. GANADO SANGA",
     "ubicacion": "Sector Ganadería",
     "rubros": "Asociaciones, ganadería"
   },
-  "ASOC. COMERCIO E IND. VGG": {
+  "ASOC COMERCIO E IND VGG": {
     "display": "ASOC. COMERCIO E IND. VGG",
     "ubicacion": "Carpa 1 - 104",
     "rubros": "Asociaciones, entidades e instituciones"
@@ -199,7 +199,7 @@
     "ubicacion": "Espacio AgTech - AG04",
     "rubros": "Software agropecuario"
   },
-  "AVIONES CIRRUS / CIELO": {
+  "AVIONES CIRRUS CIELO": {
     "display": "AVIONES CIRRUS / CIELO S.A.",
     "ubicacion": "Carpa 1 - D08",
     "rubros": "Servicios, asesoría, transporte"
@@ -209,7 +209,7 @@
     "ubicacion": "Lote Aire Libre - P89",
     "rubros": "Petroleras"
   },
-  "A. SAENZ & CIA": {
+  "A SAENZ CIA": {
     "display": "A. SAENZ & CIA.",
     "ubicacion": "Sector Ganadería",
     "rubros": "Consignataria de remates ganaderos"
@@ -264,7 +264,7 @@
     "ubicacion": "Lote Aire Libre - 1000",
     "rubros": "Bancos y servicios financieros"
   },
-  "BANCO NACIÓN": {
+  "BANCO NACION": {
     "display": "BANCO NACIÓN",
     "ubicacion": "Lote Aire Libre - 660",
     "rubros": "Bancos y servicios financieros"
@@ -274,7 +274,7 @@
     "ubicacion": "Lote Aire Libre - 1423 A",
     "rubros": "Maquinas y herramientas"
   },
-  "BÁSCULAS MAGRIS": {
+  "BASCULAS MAGRIS": {
     "display": "BÁSCULAS MAGRIS SA",
     "ubicacion": "Lote Aire Libre - 1429",
     "rubros": "Balanzas, máquinas herramientas, repuestos viales"
@@ -310,9 +310,9 @@
     "rubros": "Ganadería, trazabilidad, inst. ganaderas"
   },
   "BERNARDIN": {
-    "display": "BERNARDIN",
+    "display": "Bernardin",
     "ubicacion": "Sector Ganadería - 1918",
-    "rubros": "Maquinarias agrícolas"
+    "rubros": "Maquinaria"
   },
   "BDK DESIGN": {
     "display": "BDK DESIGN",
@@ -339,7 +339,7 @@
     "ubicacion": "Lote Aire Libre - 1140",
     "rubros": "Drones, máquinas agrícolas, máquinas viales"
   },
-  "BIOGENESIS BAGÓ": {
+  "BIOGENESIS BAGO": {
     "display": "BIOGENESIS BAGÓ",
     "ubicacion": "Sector Ganadería - 1818",
     "rubros": "Lab. veterinario, biotecnología"
@@ -414,12 +414,12 @@
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "CÁMARA COMERCIO S. LORENZO": {
+  "CAMARA COMERCIO S LORENZO": {
     "display": "CÁMARA COMERCIO S. LORENZO",
     "ubicacion": "Carpa 2 - L12",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "CÁMARA CONTRATISTAS FORR": {
+  "CAMARA CONTRATISTAS FORR": {
     "display": "CÁMARA CONTRATISTAS FORR.",
     "ubicacion": "Sector Ganadería - 1802",
     "rubros": "Contratistas rurales, forrajes"
@@ -429,7 +429,7 @@
     "ubicacion": "Sector Ganadería",
     "rubros": "Ganadería, subastas, gestión inmobiliaria"
   },
-  "CAN-AM-CF MOTO": {
+  "CAN AM CF MOTO": {
     "display": "CAN-AM-CF MOTO",
     "ubicacion": "Lote Aire Libre - P70",
     "rubros": "Motos, automotrices"
@@ -459,12 +459,12 @@
     "ubicacion": "Lote Aire Libre - 320",
     "rubros": "Casillas rurales, agroindustria, pulverizadoras"
   },
-  "CASILLAS RURALES RO-CA": {
+  "CASILLAS RURALES RO CA": {
     "display": "CASILLAS RURALES RO-CA",
     "ubicacion": "Lote Aire Libre - 1360",
     "rubros": "Casillas rurales, módulos habitacionales"
   },
-  "CASTELLI-LUCCI": {
+  "CASTELLI LUCCI": {
     "display": "CASTELLI-LUCCI",
     "ubicacion": "Carpa 1 - F07",
     "rubros": "Agropartes, repuestos agrícolas, agroindustria"
@@ -569,7 +569,7 @@
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, entidades, agroindustria"
   },
-  "CONSEJO FED. INVERSIONES": {
+  "CONSEJO FED INVERSIONES": {
     "display": "CONSEJO FED. INVERSIONES",
     "ubicacion": "Lote Aire Libre - 1427",
     "rubros": "Asociaciones, entidades e instituciones"
@@ -584,7 +584,7 @@
     "ubicacion": "Carpa 1 - E10",
     "rubros": "Fabricante, máquinas y herramientas"
   },
-  "CORVEN NEUMÁTICOS": {
+  "CORVEN NEUMATICOS": {
     "display": "CORVEN NEUMÁTICOS",
     "ubicacion": "Lote Aire Libre - 1320",
     "rubros": "Neumáticos, automotrices"
@@ -609,7 +609,7 @@
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "CRICO-CATERING": {
+  "CRICO CATERING": {
     "display": "CRICO-CATERING",
     "ubicacion": "Gastronomía",
     "rubros": "Gastronomía, servicios, alimentos"
@@ -629,7 +629,7 @@
     "ubicacion": "Espacio AgTech - AG21",
     "rubros": "Ag-Tech, componentes pulverización, software gestión"
   },
-  "D&E AGTECH": {
+  "D E AGTECH": {
     "display": "D&E AGTECH",
     "ubicacion": "Lote Aire Libre - 1248",
     "rubros": "Agricultura de precisión, drones"
@@ -704,7 +704,7 @@
     "ubicacion": "Gastronomía",
     "rubros": "Alimentos, viandas empresariales"
   },
-  "DISTRIMAQ-TATU MARCHESAN": {
+  "DISTRIMAQ TATU MARCHESAN": {
     "display": "DISTRIMAQ-TATU MARCHESAN",
     "ubicacion": "Lote Aire Libre - P91",
     "rubros": "Implementos agrícolas y forestales"
@@ -734,7 +734,7 @@
     "ubicacion": "Plot - 240",
     "rubros": "Semillas"
   },
-  "DROP-CENTER": {
+  "DROP CENTER": {
     "display": "DROP-CENTER",
     "ubicacion": "Lote Aire Libre - 1462",
     "rubros": "Sistemas y equipos de riego, tubos"
@@ -784,7 +784,7 @@
     "ubicacion": "Lote Aire Libre - 1001",
     "rubros": "Silos, elevadores, eq. ganadero, implementos"
   },
-  "EDP AGRO & PRIMIA": {
+  "EDP AGRO PRIMIA": {
     "display": "EDP AGRO & PRIMIA",
     "ubicacion": "Sector Ganadería - 1941",
     "rubros": "Nutrición animal, ganadería, soluciones"
@@ -834,7 +834,7 @@
     "ubicacion": "Carpa 2 - T15",
     "rubros": "Gastronomía, consultoría"
   },
-  "EURO TORQUE - FPT": {
+  "EURO TORQUE FPT": {
     "display": "EURO TORQUE - FPT",
     "ubicacion": "Sector Ganadería - 1914",
     "rubros": "Motores, grupos electrógenos, servicios"
@@ -854,7 +854,7 @@
     "ubicacion": "Lote Aire Libre - 1351",
     "rubros": "Eq. ganadero, instalaciones, herramientas"
   },
-  "FEBRA": {
+  "FEBRA IMPLEMENTOS": {
     "display": "FEBRA IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1036 B",
     "rubros": "Fabricante de maquinaria agrícola"
@@ -864,12 +864,12 @@
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, semillas"
   },
-  "MINISTRY AGRIC. GERMANY": {
+  "MINISTRY AGRIC GERMANY": {
     "display": "MINISTRY AGRIC. GERMANY",
     "ubicacion": "Lote Aire Libre - 467",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "FEED-PLAST": {
+  "FEED PLAST": {
     "display": "FEED-PLAST",
     "ubicacion": "Sector Ganadería - 1929",
     "rubros": "Comederos, industria plástica"
@@ -904,7 +904,7 @@
     "ubicacion": "Lote Aire Libre - 268",
     "rubros": "Máquinas agrícolas, implementos, rastras"
   },
-  "FORD ARGENTINA S.C.A": {
+  "FORD ARGENTINA S C A": {
     "display": "FORD ARGENTINA S.C.A.",
     "ubicacion": "Lote Aire Libre - 600",
     "rubros": "Automotrices"
@@ -929,17 +929,17 @@
     "ubicacion": "Lote Aire Libre - 1452",
     "rubros": "Fabricante, agropartes, cabezales"
   },
-  "FRANKLIN / ROTOR PUMP": {
+  "FRANKLIN ROTOR PUMP": {
     "display": "FRANKLIN / ROTOR PUMP",
     "ubicacion": "Lote Aire Libre - 875",
     "rubros": "Bombas, riego, grupos electrógenos"
   },
-  "FUNDACIÓN ARGENINTA": {
+  "FUNDACION ARGENINTA": {
     "display": "FUNDACIÓN ARGENINTA",
     "ubicacion": "Centro Agropampero",
     "rubros": "Administración de proyectos, internacional"
   },
-  "FUNDACIÓN BARBECHANDO": {
+  "FUNDACION BARBECHANDO": {
     "display": "FUNDACIÓN BARBECHANDO",
     "ubicacion": "Centro Agropampero",
     "rubros": "Asociaciones, asesoría"
@@ -964,7 +964,7 @@
     "ubicacion": "Lote Aire Libre - 225",
     "rubros": "Máquinas viales, agroindustria, eq. ganadero"
   },
-  "GENARO L. FERNANDEZ": {
+  "GENARO L FERNANDEZ": {
     "display": "GENARO L. FERNANDEZ",
     "ubicacion": "Carpa 1 - F06",
     "rubros": "Consultoría, servicios financieros"
@@ -974,7 +974,7 @@
     "ubicacion": "Sector Ganadería - 1936",
     "rubros": "Ganadería, consultoría, biotecnología"
   },
-  "GENOVESE MÁQUINAS": {
+  "GENOVESE MAQUINAS": {
     "display": "GENOVESE MÁQUINAS",
     "ubicacion": "Lote Aire Libre - 1050",
     "rubros": "Fabricante, repuestos, implementos"
@@ -1004,7 +1004,7 @@
     "ubicacion": "Lote Aire Libre - 967",
     "rubros": "Máquinas agrícolas, renovables"
   },
-  "GLOTÓN CHICKEN TRUCK": {
+  "GLOTON CHICKEN TRUCK": {
     "display": "GLOTÓN CHICKEN TRUCK",
     "ubicacion": "Gastronomía",
     "rubros": "Gastronomía"
@@ -1029,7 +1029,7 @@
     "ubicacion": "Lote Aire Libre - 221",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "GOBIERNO SGO. ESTERO": {
+  "GOBIERNO SGO ESTERO": {
     "display": "GOBIERNO SGO. ESTERO",
     "ubicacion": "Lote Aire Libre - 1240",
     "rubros": "Asociaciones, comercio exterior"
@@ -1054,7 +1054,7 @@
     "ubicacion": "Lote Aire Libre - 1315",
     "rubros": "Fabricante maquinaria agrícola y viales"
   },
-  "GRÚAS SAN BLAS": {
+  "GRUAS SAN BLAS": {
     "display": "GRÚAS SAN BLAS",
     "ubicacion": "Lote Aire Libre - 1432",
     "rubros": "Venta/alquiler maquinaria y grúas"
@@ -1084,7 +1084,7 @@
     "ubicacion": "Carpa 2 - 012",
     "rubros": "Construcción"
   },
-  "GUIA MANT. INDUSTRIAL": {
+  "GUIA MANT INDUSTRIAL": {
     "display": "GUIA MANT. INDUSTRIAL",
     "ubicacion": "Carpa 2 - T04",
     "rubros": "Editorial, marketing digital"
@@ -1104,7 +1104,7 @@
     "ubicacion": "Lote Aire Libre - 1041",
     "rubros": "Productos fuerza, motos, marina, autos"
   },
-  "HOTEL COLONIAL S.N": {
+  "HOTEL COLONIAL S N": {
     "display": "HOTEL COLONIAL S.N.",
     "ubicacion": "San Nicolás",
     "rubros": "Hotelería"
@@ -1134,7 +1134,7 @@
     "ubicacion": "Carpa 1 - A01",
     "rubros": "Productos y máquinas viales"
   },
-  "KENTUCKY": {
+  "IMPLEMENTOS KENTUCKY": {
     "display": "IMPLEMENTOS KENTUCKY",
     "ubicacion": "Lote Aire Libre - 1552 B",
     "rubros": "Implementos agrícolas"
@@ -1144,12 +1144,12 @@
     "ubicacion": "Lote Aire Libre - 1701",
     "rubros": "Tractores, palas, viales"
   },
-  "IND. JUAN F. SECCO": {
+  "IND JUAN F SECCO": {
     "display": "IND. JUAN F. SECCO S.A.",
     "ubicacion": "1423B / Carpa 1-J05",
     "rubros": "Venta/alquiler maquinaria, motores, siderurgia"
   },
-  "INDECAR": {
+  "INDECAR MAQUINARIAS": {
     "display": "INDECAR MAQUINARIAS",
     "ubicacion": "Lote Aire Libre - 540",
     "rubros": "Máquinas agrícolas"
@@ -1159,12 +1159,12 @@
     "ubicacion": "Lote Aire Libre - 1231",
     "rubros": "Repuestos, fabricante maquinaria, cabezales"
   },
-  "COMOFRA": {
+  "INDUSTRIAS COMOFRA": {
     "display": "INDUSTRIAS COMOFRA",
     "ubicacion": "Lote Aire Libre - 121",
     "rubros": "Tolvas, mixers, embolsadora"
   },
-  "ERCA": {
+  "INDUSTRIAS ERCA": {
     "display": "INDUSTRIAS ERCA S.A.",
     "ubicacion": "Lote Aire Libre - 740",
     "rubros": "Máquinas agrícolas, sembradoras, rastras"
@@ -1174,22 +1174,22 @@
     "ubicacion": "Lotes 130 a 160",
     "rubros": "Máquinas agrícolas, ag. precisión"
   },
-  "MONTECOR": {
+  "INDUSTRIAS MONTECOR": {
     "display": "INDUSTRIAS MONTECOR",
     "ubicacion": "Lote Aire Libre - 1120",
     "rubros": "Máquinas agrícolas, ganadería, tolvas"
   },
-  "PESCE": {
+  "INDUSTRIAS PESCE": {
     "display": "INDUSTRIAS PESCE S.A.",
     "ubicacion": "Lote Aire Libre - 1261",
     "rubros": "Fabricante, implementos, rastras"
   },
-  "TANGO": {
+  "INDUSTRIAS TANGO": {
     "display": "INDUSTRIAS TANGO",
     "ubicacion": "Sector Ganadería - 1927",
     "rubros": "Fabricante, implementos agrícolas"
   },
-  "ING. ALEJANDRO PANNUNZIO": {
+  "ING ALEJANDRO PANNUNZIO": {
     "display": "ING. ALEJANDRO PANNUNZIO",
     "ubicacion": "Carpa 1 - C02",
     "rubros": "Riego, asesoramiento y consultoría"
@@ -1204,7 +1204,7 @@
     "ubicacion": "Carpa 2 - 006",
     "rubros": "Lab. agroindustrial, software pesaje"
   },
-  "INVERSION B 5.A": {
+  "INVERSION B 5 A": {
     "display": "INVERSION B 5.A.",
     "ubicacion": "Lote Aire Libre - M09",
     "rubros": "Implementos agrícolas, fabricante maquinaria"
@@ -1239,7 +1239,7 @@
     "ubicacion": "Lote Aire Libre - 400",
     "rubros": "Fabricante de maquinaria agrícola"
   },
-  "JAUREGUI LORDA-HACIENDA": {
+  "JAUREGUI LORDA HACIENDA": {
     "display": "JAUREGUI LORDA-HACIENDA",
     "ubicacion": "Sector Ganadería - 1933",
     "rubros": "Ganadería"
@@ -1249,7 +1249,7 @@
     "ubicacion": "Carpa Agropampero",
     "rubros": "Asociaciones, educación, administración"
   },
-  "VÍCTOR JURI": {
+  "VICTOR JURI": {
     "display": "VÍCTOR JURI",
     "ubicacion": "Lote Aire Libre - 310",
     "rubros": "Sembradoras, fertilizadoras, fabricante"
@@ -1259,7 +1259,7 @@
     "ubicacion": "Lote Aire Libre - 1424 B",
     "rubros": "Herramientas, maquinaria, alquiler"
   },
-  "KAFÚ": {
+  "KAFU METALURGICA": {
     "display": "KAFÚ METALURGICA SRL",
     "ubicacion": "Lote Aire Libre - E22",
     "rubros": "Implementos agrícolas y forestales"
@@ -1289,7 +1289,7 @@
     "ubicacion": "Lote Aire Libre - M17",
     "rubros": "Medios de comunicación"
   },
-  "LDC-LOUIS DREYFUS": {
+  "LDC LOUIS DREYFUS": {
     "display": "LDC-LOUIS DREYFUS",
     "ubicacion": "Plot - N65",
     "rubros": "Exportaciones, insumos"
@@ -1299,7 +1299,7 @@
     "ubicacion": "Lote Aire Libre - 420",
     "rubros": "Agricultura de precisión, tecnología"
   },
-  "LINDSAY IRRI-AR": {
+  "LINDSAY IRRI AR": {
     "display": "LINDSAY IRRI-AR S.A.",
     "ubicacion": "Lote Aire Libre - 1149",
     "rubros": "Equipos y sistemas de riego"
@@ -1334,7 +1334,7 @@
     "ubicacion": "Gastronomía",
     "rubros": "Gastronomía, alimentos, bebidas"
   },
-  "LÜSQTOFF": {
+  "LUSQTOFF": {
     "display": "LÜSQTOFF",
     "ubicacion": "Lote Aire Libre - E23",
     "rubros": "Herramientas, construcción, máquinas agrícolas"
@@ -1364,17 +1364,17 @@
     "ubicacion": "Entidad",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "MAIZCO S.A.I. Y C": {
+  "MAIZCO S A I Y C": {
     "display": "MAIZCO S.A.I. Y C.",
     "ubicacion": "Lote Aire Libre - 1141",
     "rubros": "Implementos, máquinas, cabezales"
   },
-  "MANN-FILTER ARGENTINA": {
+  "MANN FILTER ARGENTINA": {
     "display": "MANN-FILTER ARGENTINA",
     "ubicacion": "Lote Aire Libre - 968",
     "rubros": "Filtros maquinaria agrícola y motores"
   },
-  "MÁQUINAS AGRÍCOLAS OMBU": {
+  "MAQUINAS AGRICOLAS OMBU": {
     "display": "MÁQUINAS AGRÍCOLAS OMBU",
     "ubicacion": "Lote Aire Libre - 530",
     "rubros": "Tolvas, cabezales, pulverizadoras, remolques"
@@ -1389,7 +1389,7 @@
     "ubicacion": "Lote Aire Libre - 963",
     "rubros": "Tecnología, drones, electrónica, Ag-Tech"
   },
-  "MARTÍN ERRAZQUIN": {
+  "MARTIN ERRAZQUIN": {
     "display": "MARTÍN ERRAZQUIN",
     "ubicacion": "Lote Aire Libre - 962",
     "rubros": "Máquinas agrícolas, granos"
@@ -1424,7 +1424,7 @@
     "ubicacion": "Lote Aire Libre - 308",
     "rubros": "Secadoras de grano, renovables"
   },
-  "MERCEDES-BENZ CAMIONES": {
+  "MERCEDES BENZ CAMIONES": {
     "display": "MERCEDES-BENZ CAMIONES",
     "ubicacion": "Lote Aire Libre - 900",
     "rubros": "Automotrices"
@@ -1444,22 +1444,22 @@
     "ubicacion": "Lote Aire Libre - 1251",
     "rubros": "Fabricación implementos agrícolas"
   },
-  "CELE": {
+  "METALURGICA CELE": {
     "display": "METALURGICA CELE S.A.",
     "ubicacion": "Lote Aire Libre - 1343",
     "rubros": "Sembradoras, rastras"
   },
-  "CINALLI": {
+  "METALURGICA CINALLI": {
     "display": "METALURGICA CINALLI",
     "ubicacion": "Lote Aire Libre - 1440",
     "rubros": "Implementos agrícolas"
   },
-  "DE 9": {
+  "METALURGICA DE 9": {
     "display": "METALURGICA DE 9 SRL",
     "ubicacion": "Lote Aire Libre - 222",
     "rubros": "Casillas, módulos, fabricante, alquiler"
   },
-  "LF": {
+  "METALURGICA LF": {
     "display": "METALURGICA LF",
     "ubicacion": "Lote Aire Libre - 1425",
     "rubros": "Fabricación implementos, soluciones agrícolas"
@@ -1489,12 +1489,12 @@
     "ubicacion": "Carpa 1 - G02",
     "rubros": "Rodamientos, lubricación, repuestos sembradoras"
   },
-  "MIN. DESARROLLO AGR. PBA": {
+  "MIN DESARROLLO AGR PBA": {
     "display": "MIN. DESARROLLO AGR. PBA",
     "ubicacion": "Lote Aire Libre - 210",
     "rubros": "Asociaciones, entidades e instituciones"
   },
-  "MIN. DES. PROD. SANTA FE": {
+  "MIN DES PROD SANTA FE": {
     "display": "MIN. DES. PROD. SANTA FE",
     "ubicacion": "Lote Aire Libre - P50",
     "rubros": "Asociaciones, entidades e instituciones"
@@ -1509,7 +1509,7 @@
     "ubicacion": "Lote Aire Libre - 1420",
     "rubros": "Sembradoras"
   },
-  "MOD. ARQ. MODULAR": {
+  "MOD ARQ MODULAR": {
     "display": "MOD. ARQ. MODULAR",
     "ubicacion": "Lote Aire Libre - 961",
     "rubros": "Módulos habitacionales, construcción, oficinas"
@@ -1520,9 +1520,9 @@
     "rubros": "Automotrices"
   },
   "MONTENEGRO": {
-    "display": "MONTENEGRO S.A.",
+    "display": "Montenegro",
     "ubicacion": "Lote Aire Libre - 830",
-    "rubros": "Fab. maquinaria, tolvas, rastras, riego"
+    "rubros": "Rastras"
   },
   "MONUMENTAL": {
     "display": "MONUMENTAL",
@@ -1549,7 +1549,7 @@
     "ubicacion": "Lote Aire Libre - 1466",
     "rubros": "Importaciones"
   },
-  "MUNI. ESTEBAN ECHEVERRÍA": {
+  "MUNI ESTEBAN ECHEVERRIA": {
     "display": "MUNI. ESTEBAN ECHEVERRÍA",
     "ubicacion": "Carpa 1 - B01",
     "rubros": "Institución, medios de comunicación"
@@ -1559,7 +1559,7 @@
     "ubicacion": "Carpa 2 - 510",
     "rubros": "Institución, turismo, servicios"
   },
-  "MUNICIPALIDAD SAN NICOLÁS": {
+  "MUNICIPALIDAD SAN NICOLAS": {
     "display": "MUNICIPALIDAD SAN NICOLÁS",
     "ubicacion": "Lote Aire Libre - 470",
     "rubros": "Institución, turismo, gastronomía, industria"
@@ -1594,7 +1594,7 @@
     "ubicacion": "Lote Aire Libre - 1332",
     "rubros": "Sistemas de riego, ag. precisión"
   },
-  "NEUMÁTICOS CORRAL": {
+  "NEUMATICOS CORRAL": {
     "display": "NEUMÁTICOS CORRAL",
     "ubicacion": "Lote Aire Libre - 1422",
     "rubros": "Neumáticos"
@@ -1634,7 +1634,7 @@
     "ubicacion": "Lote Aire Libre - 1428",
     "rubros": "Artículos rurales, fabricante"
   },
-  "O.H. GARCIA Y CÍA": {
+  "O H GARCIA Y CIA": {
     "display": "O.H. GARCIA Y CÍA.",
     "ubicacion": "Carpa 2 - S01",
     "rubros": "Accesorios pulverizadoras, repuestos"
@@ -1659,7 +1659,7 @@
     "ubicacion": "Lote Aire Libre - 1610",
     "rubros": "Instalaciones ganaderas"
   },
-  "OSVALDO R. VARELA E HIJOS": {
+  "OSVALDO R VARELA E HIJOS": {
     "display": "OSVALDO R. VARELA E HIJOS",
     "ubicacion": "Lote Aire Libre - 1461",
     "rubros": "Inst. ganaderas, agroind., artículos rurales"
@@ -1685,6 +1685,11 @@
     "rubros": "Extracción de granos en silos"
   },
   "PAMPERO": {
+    "display": "PAMPERO",
+    "ubicacion": "Centro Agropampero",
+    "rubros": "Indumentaria industrial y de protección"
+  },
+  "PAMPERO IMPLEMENTOS": {
     "display": "PAMPERO IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1252",
     "rubros": "Máquinas agrícolas, importaciones"
@@ -1700,9 +1705,9 @@
     "rubros": "Motorhome, casillas, vehículos"
   },
   "PAUNY": {
-    "display": "PAUNY S.A.",
+    "display": "Pauny",
     "ubicacion": "Lote Aire Libre - 510",
-    "rubros": "Tractores, fabricante"
+    "rubros": "Tractores"
   },
   "PEDRO NOEL IREY": {
     "display": "PEDRO NOEL IREY SRL",
@@ -1724,15 +1729,15 @@
     "ubicacion": "Carpa 1 - A09",
     "rubros": "Soluciones agrícolas, ag. precisión, tecnología"
   },
-  "PHYSIS INFÓRMATICA": {
+  "PHYSIS INFORMATICA": {
     "display": "PHYSIS INFÓRMATICA",
     "ubicacion": "Carpa 1 - B10",
     "rubros": "Software agropecuario"
   },
   "PIEROBON": {
-    "display": "PIEROBON S.A.",
+    "display": "Pierobon",
     "ubicacion": "Lote Aire Libre - 1044",
-    "rubros": "Sembradoras, embolsadora"
+    "rubros": "Sembradoras"
   },
   "PIERSANTI": {
     "display": "PIERSANTI",
@@ -1819,12 +1824,12 @@
     "ubicacion": "Lote Aire Libre - E14",
     "rubros": "Pulverizadoras, fertilización líquida"
   },
-  "RC ONLINE - DJI AGRICULTURE": {
+  "RC ONLINE DJI AGRICULTURE": {
     "display": "RC ONLINE - DJI AGRICULTURE",
     "ubicacion": "Sector Ganadería - 1916",
     "rubros": "Ag. precisión drones, capacitación"
   },
-  "RECURSOS ORGÁNICOS": {
+  "RECURSOS ORGANICOS": {
     "display": "RECURSOS ORGÁNICOS",
     "ubicacion": "Lote Aire Libre - E21",
     "rubros": "Desmalezadoras, viales, soluciones"
@@ -1844,12 +1849,12 @@
     "ubicacion": "Carpa 2 - K02",
     "rubros": "Soldadura y corte"
   },
-  "RICHIGER": {
+  "RICHIGER MAQUINARIAS": {
     "display": "RICHIGER MAQUINARIAS",
     "ubicacion": "Lote Aire Libre - 110",
     "rubros": "Fabricante maquinaria, implementos"
   },
-  "RIO URUGUAY SEGUROS (RUS)": {
+  "RIO URUGUAY SEGUROS RUS": {
     "display": "RIO URUGUAY SEGUROS (RUS)",
     "ubicacion": "Lote Aire Libre - 120",
     "rubros": "Aseguradoras"
@@ -1859,7 +1864,7 @@
     "ubicacion": "Carpa 2 - N02",
     "rubros": "Logística"
   },
-  "ROLAND H/MAQUINON": {
+  "ROLAND H MAQUINON": {
     "display": "ROLAND H/MAQUINON S.A",
     "ubicacion": "Lote Aire Libre - 369",
     "rubros": "Fabricante maquinaria, tractores"
@@ -1909,7 +1914,7 @@
     "ubicacion": "Lote Aire Libre - 1163",
     "rubros": "Inst. ganaderas, comederos, implementos"
   },
-  "SEC. AGRICULTURA / PESCA": {
+  "SEC AGRICULTURA PESCA": {
     "display": "SEC. AGRICULTURA / PESCA",
     "ubicacion": "Lote Aire Libre - P110",
     "rubros": "Asociaciones, entidades e instituciones"
@@ -1929,7 +1934,7 @@
     "ubicacion": "Sector Ganadería - 1814",
     "rubros": "Fertilizantes, agroquímicos, fabricante"
   },
-  "SERV. METEOROLÓGICO NAC": {
+  "SERV METEOROLOGICO NAC": {
     "display": "SERV. METEOROLÓGICO NAC.",
     "ubicacion": "Centro Agropampero",
     "rubros": "Meteorología, información"
@@ -2024,7 +2029,7 @@
     "ubicacion": "Filtros, maquinaria, herramientas",
     "rubros": "SERVICIOS VIALES**"
   },
-  "SYL": {
+  "SYL IMPLEMENTOS": {
     "display": "SYL IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1036A",
     "rubros": "Acoplados tolvas, fabricante"
@@ -2035,16 +2040,16 @@
     "rubros": "Bombas, equipos de riego, cabezales"
   },
   "SYRA": {
-    "display": "SYRA",
+    "display": "Syra",
     "ubicacion": "Lote Aire Libre - 1131",
-    "rubros": "Fertilizadoras, abonadoras, forrajes"
+    "rubros": "Incorporadoras"
   },
-  "T-L / HMSA": {
+  "T L HMSA": {
     "display": "T-L / HMSA",
     "ubicacion": "Lote Aire Libre - 1255",
     "rubros": "Sistemas riego, tanques, estaciones met."
   },
-  "TALABARTERÍA ARANDÚ": {
+  "TALABARTERIA ARANDU": {
     "display": "TALABARTERÍA ARANDÚ",
     "ubicacion": "Ganadería - 1806",
     "rubros": "Talabartería, artesanías, marroquinería"
@@ -2054,7 +2059,7 @@
     "ubicacion": "Espacio AgTech – AG31",
     "rubros": "Ag-Tech, software, servicios info"
   },
-  "TALLERES METAL. PRABA": {
+  "TALLERES METAL PRABA": {
     "display": "TALLERES METAL. PRABA",
     "ubicacion": "Lote Aire Libre - 1321",
     "rubros": "Pulverizadoras, accesorios"
@@ -2069,7 +2074,7 @@
     "ubicacion": "Lote Aire Libre - 550",
     "rubros": "Sembradoras"
   },
-  "TAURO - SOLDADURA": {
+  "TAURO SOLDADURA": {
     "display": "TAURO - SOLDADURA",
     "ubicacion": "Carpa 1 - D10",
     "rubros": "Soldadura, herramientas, eq. industrial"
@@ -2084,7 +2089,7 @@
     "ubicacion": "Lote Aire Libre - 1463",
     "rubros": "Renovables, solar, grupos electrógenos"
   },
-  "TBEH - AGRO VIALES": {
+  "TBEH AGRO VIALES": {
     "display": "TBEH - AGRO VIALES",
     "ubicacion": "Lote Aire Libre - 810",
     "rubros": "Movimiento tierra, desmalezadoras"
@@ -2119,7 +2124,7 @@
     "ubicacion": "Lote Aire Libre - 570",
     "rubros": "Siderurgia, industria, aceros"
   },
-  "TERRANOVA - 360 YIELD": {
+  "TERRANOVA 360 YIELD": {
     "display": "TERRANOVA - 360 YIELD",
     "ubicacion": "Lote Aire Libre - 1032",
     "rubros": "Riego, ag. precisión, estercoleras"
@@ -2174,7 +2179,7 @@
     "ubicacion": "Espacio AgTech - AG06/07",
     "rubros": "Facultades, institucional"
   },
-  "UNIV. CATÓLICA (UCA)": {
+  "UNIV CATOLICA UCA": {
     "display": "UNIV. CATÓLICA (UCA)",
     "ubicacion": "Espacio AgTech - AG12/13",
     "rubros": "Universidad, facultades, prensa"
@@ -2190,9 +2195,9 @@
     "rubros": "Equipos de riego, renovables, ag. precisión"
   },
   "VALTRA": {
-    "display": "VALTRA",
+    "display": "Valtra",
     "ubicacion": "Lote Aire Libre - 910",
-    "rubros": "Máquinas agrícolas, tractores, tecnología"
+    "rubros": "Tractores"
   },
   "VENERGY": {
     "display": "VENERGY S.A.",
@@ -2229,7 +2234,7 @@
     "ubicacion": "Lote Aire Libre - N35",
     "rubros": "Automotrices"
   },
-  "VOLVO TRUCKS & BUSES": {
+  "VOLVO TRUCKS BUSES": {
     "display": "VOLVO TRUCKS & BUSES",
     "ubicacion": "Lote Aire Libre - 1320",
     "rubros": "Transporte de carga"
@@ -2239,7 +2244,7 @@
     "ubicacion": "Lote Aire Libre - P26",
     "rubros": "Remolques, acoplados, máquinas"
   },
-  "WALD S.A. / WATERDOG": {
+  "WALD S A WATERDOG": {
     "display": "WALD S.A. / WATERDOG",
     "ubicacion": "Lote Aire Libre - 874",
     "rubros": "Merchandising y beneficios"
@@ -2265,9 +2270,9 @@
     "rubros": "Agropartes"
   },
   "YOMEL": {
-    "display": "YOMEL",
+    "display": "Yomel",
     "ubicacion": "Lote Aire Libre - 920",
-    "rubros": "Henificación, fertilizadoras, implementos"
+    "rubros": "Heno y Forraje"
   },
   "YPF AGRO": {
     "display": "YPF AGRO",
@@ -2284,79 +2289,89 @@
     "ubicacion": "Espacio AgTech – AG18",
     "rubros": "IA en video e imagen, consultoría"
   },
-  "NEW HOLLAND": {
-    "display": "New Holland",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "JOHN DEERE": {
-    "display": "John Deere",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+  "ERCA": {
+    "display": "Industrias Erca",
+    "ubicacion": "Lote Aire Libre - 740",
+    "rubros": "Sembradoras"
   },
   "KUHN": {
     "display": "Kuhn",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+    "ubicacion": "Lote Aire Libre - 218",
+    "rubros": "Maquinaria"
   },
-  "MARISPAN": {
-    "display": "Marispan",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+  "BTI": {
+    "display": "Bti Agri",
+    "ubicacion": "Lote Aire Libre - 1340",
+    "rubros": "Sembradoras"
   },
-  "TT": {
-    "display": "TT Global",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+  "INDECAR": {
+    "display": "Indecar",
+    "ubicacion": "Lote Aire Libre - 540",
+    "rubros": "Sembradoras"
   },
-  "TERRANOVA": {
-    "display": "Terranova",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "AGROMETAL": {
-    "display": "Agrometal",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "STARA": {
-    "display": "Stara",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "FERTEC": {
-    "display": "Fertec",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "JACTO": {
-    "display": "Jacto",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "PLA": {
-    "display": "Pla",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "PRABA": {
-    "display": "Praba",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
-  },
-  "TOLMET": {
-    "display": "Tolmet",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+  "VAF": {
+    "display": "VAF",
+    "ubicacion": "Espacio AgTech - AG21",
+    "rubros": "Agricultura de Precisión"
   },
   "PULQUI": {
     "display": "Pulqui",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+    "ubicacion": "Lote Aire Libre - 1220 (Carlos Casares)",
+    "rubros": "Pulverizadoras"
   },
-  "FAVOT": {
-    "display": "Favot",
-    "ubicacion": "TBD",
-    "rubros": "Varios"
+  "TT": {
+    "display": "TT Global",
+    "ubicacion": "Lote Aire Libre - 951",
+    "rubros": "Maquinaria"
+  },
+  "NEXT": {
+    "display": "Next Siembra",
+    "ubicacion": "Hangar AgTech",
+    "rubros": "AgTech"
+  },
+  "TRAXOR": {
+    "display": "Traxor",
+    "ubicacion": "Lote Aire Libre - 218",
+    "rubros": "Tractores"
+  },
+  "PLA": {
+    "display": "Pla by John Deere",
+    "ubicacion": "Lote Aire Libre - 130",
+    "rubros": "Pulverizadoras"
+  },
+  "JACTO": {
+    "display": "Jacto",
+    "ubicacion": "Lote Aire Libre - 400",
+    "rubros": "Pulverizadoras"
+  },
+  "OMBU": {
+    "display": "Maquinas Ombu",
+    "ubicacion": "Lote Aire Libre - 530",
+    "rubros": "Tolvas"
+  },
+  "CASE": {
+    "display": "Case IH",
+    "ubicacion": "Lote Aire Libre - NO5",
+    "rubros": "Tractores"
+  },
+  "HOLLAND": {
+    "display": "New Holland",
+    "ubicacion": "Lote Aire Libre - P30",
+    "rubros": "Cosechadoras"
+  },
+  "DEERE": {
+    "display": "John Deere",
+    "ubicacion": "Lotes 130 a 160",
+    "rubros": "Maquinaria"
+  },
+  "ARG METAL": {
+    "display": "Arg-Metal",
+    "ubicacion": "Lote Aire Libre (Varios)",
+    "rubros": "Tolvas"
+  },
+  "PINTURAS": {
+    "display": "MC Pinturas",
+    "ubicacion": "Loma Verde, Escobar",
+    "rubros": "Pinturas"
   }
 }
