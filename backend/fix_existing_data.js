@@ -22,7 +22,9 @@ const CATEGORIA_MAP = {
 };
 
 function getBetterInfo(titulo, desc) {
-    const norm = (titulo + ' ' + (desc || '')).toLowerCase();
+    const titleNorm = (titulo || '').toLowerCase();
+    const descNorm = (desc || '').toLowerCase();
+    const fullNorm = titleNorm + ' ' + descNorm;
 
     let marca = 'Otra';
     let ubicacion = 'TBD';
@@ -30,8 +32,15 @@ function getBetterInfo(titulo, desc) {
 
     const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
 
+    const hasBrand = (text, brand) => {
+        const escapedBrand = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
+        return regex.test(text);
+    };
+
+    // 1. Título
     for (let b of sortedBrands) {
-        if (norm.includes(b.toLowerCase())) {
+        if (hasBrand(titleNorm, b)) {
             marca = b;
             ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
             rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
@@ -39,11 +48,32 @@ function getBetterInfo(titulo, desc) {
         }
     }
 
+    // 2. Descripción
+    if (marca === 'Otra') {
+        for (let b of sortedBrands) {
+            if (hasBrand(descNorm, b)) {
+                marca = b;
+                ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
+                rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+                break;
+            }
+        }
+    }
+
     let categoria = 'Otras';
     for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-        if (rawRubros.includes(kw) || norm.includes(kw)) {
+        if (rawRubros.includes(kw)) {
             categoria = cat;
             break;
+        }
+    }
+
+    if (categoria === 'Otras') {
+        for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
+            if (fullNorm.includes(kw)) {
+                categoria = cat;
+                break;
+            }
         }
     }
 

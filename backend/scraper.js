@@ -56,40 +56,59 @@ const CATEGORIA_MAP = {
   'aplicadora': 'Incorporadoras'
 };
 
-function getCategoriaYMarca(texto) {
-  const norm = (texto || '').toLowerCase();
+function getCategoriaYMarca(titulo, descripcion) {
+  const titleNorm = (titulo || '').toLowerCase();
+  const descNorm = (descripcion || '').toLowerCase();
+  const fullNorm = titleNorm + ' ' + descNorm;
 
   let marca = 'Otra';
   let ubicacion = 'TBD';
   let rawRubros = '';
 
-  // 1. Buscar entre las 460+ marcas del PDF
   const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
 
+  // Función auxiliar para buscar palabra completa
+  const hasBrand = (text, brand) => {
+    // Escapar caracteres especiales y buscar límites de palabra
+    const escapedBrand = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
+    return regex.test(text);
+  };
+
+  // 1. Buscar primero en el TÍTULO (más preciso)
   for (let b of sortedBrands) {
-    if (norm.includes(b.toLowerCase())) {
+    if (hasBrand(titleNorm, b)) {
       marca = b;
-      // Ahora ubicacionesExpo[b] es un objeto {ubicacion, rubros}
       ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
       rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
       break;
     }
   }
 
-  // 2. Fallback a MARCAS_CONOCIDAS manual si "Otra"
+  // 2. Si no se halló en título, buscar en DESCRIPCIÓN
+  if (marca === 'Otra') {
+    for (let b of sortedBrands) {
+      if (hasBrand(descNorm, b)) {
+        marca = b;
+        ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
+        rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+        break;
+      }
+    }
+  }
+
+  // 3. Fallback a MARCAS_CONOCIDAS manual
   if (marca === 'Otra') {
     for (let m of MARCAS_CONOCIDAS) {
-      if (norm.includes(m.toLowerCase())) {
+      if (hasBrand(fullNorm, m)) {
         marca = m;
         break;
       }
     }
   }
 
-  // 3. Mapeo de Categoría
+  // 4. Mapeo de Categoría
   let categoria = 'Otras';
-
-  // Primero por rubros del PDF (son más precisos)
   for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
     if (rawRubros.includes(kw)) {
       categoria = cat;
@@ -97,10 +116,9 @@ function getCategoriaYMarca(texto) {
     }
   }
 
-  // Si no se halló, buscar en el texto de la noticia
   if (categoria === 'Otras') {
     for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-      if (norm.includes(kw)) {
+      if (fullNorm.includes(kw)) {
         categoria = cat;
         break;
       }
@@ -295,8 +313,7 @@ async function scrapeAllNews(maxPages = 3) {
           console.log(`   🔍 Detalle: ${art.titulo}`);
           const detail = await scrapeArticleDetail(detailPage, art.url);
 
-          let textoCompleto = (art.titulo + ' ' + (detail.descripcion || '')).toLowerCase();
-          let { categoria, marca, ubicacion } = getCategoriaYMarca(textoCompleto);
+          let { categoria, marca, ubicacion } = getCategoriaYMarca(art.titulo, detail.descripcion);
 
           allArticles.push({
             ...art,
