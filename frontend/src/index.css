@@ -475,41 +475,49 @@ body {
 }
 
 /* ─── Marketing Intelligence Features ─── */
-.card-verified {
-  border: 2px solid #28a745 !important;
-  background: linear-gradient(to bottom, #222, #1a2e20) !important;
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.verified-badge {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: #28a745;
+.btn-add-novedad {
+  background-color: var(--crucianelli-red);
   color: white;
-  padding: 4px 10px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(234, 11, 23, 0.2);
 }
 
-.marketing-actions {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px dashed var(--border-color);
+.btn-add-novedad:hover {
+  background-color: white;
+  color: var(--crucianelli-red);
+  transform: translateY(-1px);
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .comment-box {
   width: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--border-color);
   color: #ddd;
   padding: 10px;
   border-radius: 4px;
-  font-family: var(--font-main);
-  font-size: 0.85rem;
+  font-family: inherit;
+  font-size: 0.8rem;
   resize: vertical;
-  min-height: 60px;
+  min-height: 70px;
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -518,21 +526,92 @@ body {
   border-color: var(--crucianelli-red);
 }
 
-.verify-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.btn-save-comment {
+  align-self: flex-end;
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #444;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #ccc;
 }
 
-.verify-toggle input {
-  width: 18px;
-  height: 18px;
+.btn-save-comment:hover {
+  background-color: var(--crucianelli-red);
+  border-color: var(--crucianelli-red);
+  color: white;
+}
+
+.card-footer-buttons {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-verify {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
   cursor: pointer;
-  accent-color: var(--crucianelli-red);
+  transition: all 0.3s ease;
+}
+
+.btn-verify.active {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.btn-verify:hover:not(.active) {
+  border-color: #666;
+  color: white;
+}
+
+.btn-source {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #444;
+  color: #888;
+  padding: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn-source:hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.card-location-info {
+  margin-top: 15px;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.location-icon {
+  font-size: 0.9rem;
+}
+
+.card-verified {
+  border-left: 4px solid #28a745 !important;
+  background-color: #1a1e1a !important;
 }
 
 .card-tag {
@@ -569,16 +648,39 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.modal-content h3 {
-  margin-bottom: 20px;
-  color: white;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
-.modal-content form {
-  display: flex;
-  flex-direction: column;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 /* ─── Status ─── */

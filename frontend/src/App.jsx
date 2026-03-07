@@ -187,13 +187,13 @@ export default function App() {
               <span>ExpoAgro Intelligence</span>
             </div>
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-            <button className="btn-primary" style={{ backgroundColor: '#28a745' }} onClick={() => setShowManualModal(true)}>
-              + Agregar Novedad
+          <div className="header-actions">
+            <button className="btn-add-novedad" onClick={() => setShowManualModal(true)}>
+              + Novedad Manual
             </button>
             <div className="header-status">
               <div className={`status-dot ${isScraping ? 'scraping' : ''}`}></div>
-              <span>{isScraping ? 'Scraping...' : 'Online'}</span>
+              <span>{isScraping ? 'Sincronizando...' : 'Online'}</span>
             </div>
           </div>
         </div>
@@ -266,28 +266,38 @@ export default function App() {
                   <div className="marketing-actions">
                     <div className="comment-section">
                       <textarea
-                        placeholder="Agregar comentarios de marketing..."
+                        id={`comment-${idx}`}
+                        placeholder="Comentarios de marketing..."
                         defaultValue={n.comentarios || ''}
-                        onBlur={(e) => updateNoticia(n.url, { comentarios: e.target.value })}
                         className="comment-box"
                       />
+                      <button
+                        className="btn-save-comment"
+                        onClick={() => {
+                          const val = document.getElementById(`comment-${idx}`).value;
+                          updateNoticia(n.url, { comentarios: val });
+                        }}
+                      >
+                        Guardar
+                      </button>
                     </div>
 
-                    <div className="card-footer" style={{ marginTop: '15px' }}>
-                      <label className="verify-toggle">
-                        <input
-                          type="checkbox"
-                          checked={!!n.verificado}
-                          onChange={(e) => updateNoticia(n.url, { verificado: e.target.checked })}
-                        />
-                        <span>Verificado en Stand</span>
-                      </label>
-                      <a href={n.url} target="_blank" rel="noopener noreferrer" className="read-more-link">
-                        Fuente <span style={{ color: 'var(--crucianelli-red)' }}>»</span>
+                    <div className="card-footer-buttons">
+                      <button
+                        className={`btn-verify ${n.verificado ? 'active' : ''}`}
+                        onClick={() => updateNoticia(n.url, { verificado: !n.verificado })}
+                      >
+                        {n.verificado ? '✅ Verificado' : '🔍 Verificar Stand'}
+                      </button>
+
+                      <a href={n.url} target="_blank" rel="noopener noreferrer" className="btn-source">
+                        📌 Ver Fuente Original
                       </a>
                     </div>
-                    <div style={{ textAlign: 'right', marginTop: '5px', fontSize: '0.8rem', color: '#888' }}>
-                      Stand: {n.ubicacion || 'TBD'}
+
+                    <div className="card-location-info">
+                      <span className="location-icon">📍</span>
+                      Stand: <b>{n.ubicacion || 'TBD'}</b>
                     </div>
                   </div>
                 </div>
