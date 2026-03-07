@@ -256,14 +256,36 @@ export default function App() {
                 </div>
 
                 <div className="card-content">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <div className="card-header-info">
                     <span className="card-date">{new Date(n.fecha).toLocaleDateString() || 'Marzo 2026'}</span>
-                    <span className="card-tag">{n.categoria || 'Otra'} | {n.marca || 'Otra'}</span>
+                    <span className="card-tag">{n.categoria || 'Otra'}</span>
                   </div>
+
                   <h4 className="card-title">{n.titulo}</h4>
                   <p className="card-desc">{n.descripcion}</p>
 
                   <div className="marketing-actions">
+                    <div className="marketing-fields-row">
+                      <div className="field-group">
+                        <label>Marca:</label>
+                        <input
+                          type="text"
+                          defaultValue={n.marca || 'Otra'}
+                          onBlur={(e) => updateNoticia(n.url, { marca: e.target.value })}
+                          className="mini-input"
+                        />
+                      </div>
+                      <div className="field-group">
+                        <label>Stand:</label>
+                        <input
+                          type="text"
+                          defaultValue={n.ubicacion || 'TBD'}
+                          onBlur={(e) => updateNoticia(n.url, { ubicacion: e.target.value })}
+                          className="mini-input"
+                        />
+                      </div>
+                    </div>
+
                     <div className="comment-section">
                       <textarea
                         id={`comment-${idx}`}
@@ -278,7 +300,7 @@ export default function App() {
                           updateNoticia(n.url, { comentarios: val });
                         }}
                       >
-                        Guardar
+                        Guardar Nota
                       </button>
                     </div>
 
@@ -287,17 +309,12 @@ export default function App() {
                         className={`btn-verify ${n.verificado ? 'active' : ''}`}
                         onClick={() => updateNoticia(n.url, { verificado: !n.verificado })}
                       >
-                        {n.verificado ? '✅ Verificado' : '🔍 Verificar Stand'}
+                        {n.verificado ? '✅ Verificado' : '🔍 Verificar en Stand'}
                       </button>
 
                       <a href={n.url} target="_blank" rel="noopener noreferrer" className="btn-source">
-                        📌 Ver Fuente Original
+                        🔗 Ver Fuente
                       </a>
-                    </div>
-
-                    <div className="card-location-info">
-                      <span className="location-icon">📍</span>
-                      Stand: <b>{n.ubicacion || 'TBD'}</b>
                     </div>
                   </div>
                 </div>

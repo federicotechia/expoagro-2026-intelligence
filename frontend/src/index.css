@@ -689,6 +689,51 @@ body {
   box-shadow: 0 0 8px #ffc107;
 }
 
+.marketing-fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-group label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.mini-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.mini-input:focus {
+  border-color: var(--crucianelli-red);
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.card-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 @media (max-width: 768px) {
   .news-grid {
     grid-template-columns: 1fr;
