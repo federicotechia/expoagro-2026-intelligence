@@ -42,37 +42,68 @@ try {
   console.log('No se pudo cargar ubicaciones.json');
 }
 
-// Asignador basico
+const CATEGORIA_MAP = {
+  'sembradora': 'Sembradoras',
+  'tractor': 'Tractores',
+  'pulverizadora': 'Pulverizadoras',
+  'precisión': 'Agricultura de Precisión',
+  'precisíon': 'Agricultura de Precisión',
+  'agtech': 'Agricultura de Precisión',
+  'software': 'Agricultura de Precisión',
+  'tecnología': 'Agricultura de Precisión',
+  'fertilizadora': 'Incorporadoras',
+  'incorporadora': 'Incorporadoras',
+  'aplicadora': 'Incorporadoras'
+};
+
 function getCategoriaYMarca(texto) {
   const norm = (texto || '').toLowerCase();
 
-  let categoria = 'Otras';
-  for (let cat of CATEGORIAS) {
-    // Si "Agricultura de Precisión" norm => "agricultura de precisión", pero la buscaremos simple
-    let catLower = cat.toLowerCase();
-    if (catLower === 'agricultura de precisión') catLower = 'precisión';
+  let marca = 'Otra';
+  let ubicacion = 'TBD';
+  let rawRubros = '';
 
-    if (norm.includes(catLower) || (catLower === 'sembradoras' && norm.includes('sembradora')) || (catLower === 'tractores' && norm.includes('tractor'))) {
+  // 1. Buscar entre las 460+ marcas del PDF
+  const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
+
+  for (let b of sortedBrands) {
+    if (norm.includes(b.toLowerCase())) {
+      marca = b;
+      // Ahora ubicacionesExpo[b] es un objeto {ubicacion, rubros}
+      ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
+      rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+      break;
+    }
+  }
+
+  // 2. Fallback a MARCAS_CONOCIDAS manual si "Otra"
+  if (marca === 'Otra') {
+    for (let m of MARCAS_CONOCIDAS) {
+      if (norm.includes(m.toLowerCase())) {
+        marca = m;
+        break;
+      }
+    }
+  }
+
+  // 3. Mapeo de Categoría
+  let categoria = 'Otras';
+
+  // Primero por rubros del PDF (son más precisos)
+  for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
+    if (rawRubros.includes(kw)) {
       categoria = cat;
       break;
     }
   }
 
-  let marca = 'Otra';
-  for (let m of MARCAS_CONOCIDAS) {
-    if (norm.includes(m.toLowerCase())) {
-      marca = m;
-      break;
-    }
-  }
-
-  // Buscar ubicación
-  let ubicacion = 'TBD';
-  if (marca !== 'Otra') {
-    // Buscar en las claves del json alguna que contenga la marca
-    const match = Object.keys(ubicacionesExpo).find(k => k.toLowerCase().includes(marca.toLowerCase()));
-    if (match) {
-      ubicacion = ubicacionesExpo[match];
+  // Si no se halló, buscar en el texto de la noticia
+  if (categoria === 'Otras') {
+    for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
+      if (norm.includes(kw)) {
+        categoria = cat;
+        break;
+      }
     }
   }
 
