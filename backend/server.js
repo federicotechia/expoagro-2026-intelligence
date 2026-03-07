@@ -117,6 +117,15 @@ app.get('/api/noticias', (req, res) => {
     // Paginación
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
+
+    // Ordenar por fecha (default descendente)
+    const orden = req.query.orden || 'desc';
+    noticias.sort((a, b) => {
+        const dateA = new Date(a.fecha || 0).getTime();
+        const dateB = new Date(b.fecha || 0).getTime();
+        return orden === 'desc' ? dateB - dateA : dateA - dateB;
+    });
+
     const total = noticias.length;
     const totalPages = Math.ceil(total / limit);
     const start = (page - 1) * limit;
@@ -131,6 +140,78 @@ app.get('/api/noticias', (req, res) => {
         isUpdating: cache.isUpdating,
         noticias: paginated,
     });
+});
+
+/**
+ * PATCH /api/noticias/:id
+ * Actualiza una noticia (comentarios, verificado, etc.)
+ * Se puede usar la URL codificada como ID.
+ */
+app.patch('/api/noticias/:id', async (req, res) => {
+    const id = decodeURIComponent(req.params.id);
+    const updates = req.body;
+
+    // 1. Actualizar en Supabase
+    try {
+        const { data, error } = await supabase
+            .from('noticias')
+            .update(updates)
+            .eq('url', id)
+            .select();
+
+        if (error) throw error;
+
+        // 2. Actualizar en cache local
+        const index = cache.noticias.findIndex(n => n.url === id);
+        if (index !== -1) {
+            cache.noticias[index] = { ...cache.noticias[index], ...updates };
+        }
+
+        saveCache([]); // Guardar estado actual en disco
+
+        res.json({ ok: true, data });
+    } catch (err) {
+        console.error('❌ Error actualizando noticia:', err.message);
+        res.status(500).json({ ok: false, mensaje: err.message });
+    }
+});
+
+/**
+ * POST /api/noticias/manual
+ * Agrega una noticia manualmente
+ */
+app.post('/api/noticias/manual', async (req, res) => {
+    const nueva = {
+        ...req.body,
+        fuente: 'Manual',
+        fecha: new Date().toISOString()
+    };
+
+    try {
+        // 1. Guardar en Supabase
+        const { data, error } = await supabase
+            .from('noticias')
+            .upsert([nueva], { onConflict: 'url' })
+            .select();
+
+        if (error) throw error;
+
+        // 2. Actualizar cache local
+        // Evitar duplicados por URL
+        const index = cache.noticias.findIndex(n => n.url === nueva.url);
+        if (index !== -1) {
+            cache.noticias[index] = { ...cache.noticias[index], ...nueva };
+        } else {
+            cache.noticias.unshift(nueva);
+        }
+
+        saveCache([]);
+
+        res.json({ ok: true, data });
+    } catch (err) {
+        console.error('❌ Error agregando noticia manual:', err.message);
+        res.status(500).json({ ok: false, mensaje: err.message });
+    }
 });
 
 /**
