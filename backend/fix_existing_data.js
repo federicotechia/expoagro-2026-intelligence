@@ -21,9 +21,18 @@ const CATEGORIA_MAP = {
     'aplicadora': 'Incorporadoras'
 };
 
+function normalizeText(text) {
+    if (!text) return '';
+    return text
+        .normalize('NFD') // Descomponer acentos
+        .replace(/[\u0300-\u036f]/g, '') // Quitar los simbolos de acento
+        .toLowerCase()
+        .trim();
+}
+
 function getBetterInfo(titulo, desc) {
-    const titleNorm = (titulo || '').toLowerCase();
-    const descNorm = (desc || '').toLowerCase();
+    const titleNorm = normalizeText(titulo);
+    const descNorm = normalizeText(desc);
     const fullNorm = titleNorm + ' ' + descNorm;
 
     let marca = 'Otra';
@@ -32,10 +41,13 @@ function getBetterInfo(titulo, desc) {
 
     const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
 
-    const hasBrand = (text, brand) => {
-        const escapedBrand = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const hasBrand = (textNormalized, brandCore) => {
+        const normalizedBrand = normalizeText(brandCore);
+        if (normalizedBrand.length < 3) return false;
+
+        const escapedBrand = normalizedBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
-        return regex.test(text);
+        return regex.test(textNormalized);
     };
 
     // 1. Título
@@ -61,8 +73,9 @@ function getBetterInfo(titulo, desc) {
     }
 
     let categoria = 'Otras';
+    const normRubros = normalizeText(rawRubros);
     for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-        if (rawRubros.includes(kw)) {
+        if (normRubros.includes(normalizeText(kw))) {
             categoria = cat;
             break;
         }
@@ -70,7 +83,7 @@ function getBetterInfo(titulo, desc) {
 
     if (categoria === 'Otras') {
         for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-            if (fullNorm.includes(kw)) {
+            if (fullNorm.includes(normalizeText(kw))) {
                 categoria = cat;
                 break;
             }

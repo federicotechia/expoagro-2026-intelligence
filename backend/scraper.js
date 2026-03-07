@@ -56,26 +56,38 @@ const CATEGORIA_MAP = {
   'aplicadora': 'Incorporadoras'
 };
 
+function normalizeText(text) {
+  if (!text) return '';
+  return text
+    .normalize('NFD') // Descomponer acentos
+    .replace(/[\u0300-\u036f]/g, '') // Quitar los simbolos de acento
+    .toLowerCase()
+    .trim();
+}
+
 function getCategoriaYMarca(titulo, descripcion) {
-  const titleNorm = (titulo || '').toLowerCase();
-  const descNorm = (descripcion || '').toLowerCase();
+  const titleNorm = normalizeText(titulo);
+  const descNorm = normalizeText(descripcion);
   const fullNorm = titleNorm + ' ' + descNorm;
 
   let marca = 'Otra';
   let ubicacion = 'TBD';
   let rawRubros = '';
 
+  // 1. Cargamos marcas ordenadas por largo (para no matchear partes de nombres)
   const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
 
-  // Función auxiliar para buscar palabra completa
-  const hasBrand = (text, brand) => {
-    // Escapar caracteres especiales y buscar límites de palabra
-    const escapedBrand = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const hasBrand = (textNormalized, brandCore) => {
+    // La marca base ya viene limpia del JSON (en mayusculas y sin acentos)
+    const normalizedBrand = normalizeText(brandCore);
+    if (normalizedBrand.length < 3) return false;
+
+    const escapedBrand = normalizedBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
-    return regex.test(text);
+    return regex.test(textNormalized);
   };
 
-  // 1. Buscar primero en el TÍTULO (más preciso)
+  // 1. Título
   for (let b of sortedBrands) {
     if (hasBrand(titleNorm, b)) {
       marca = b;
@@ -85,7 +97,7 @@ function getCategoriaYMarca(titulo, descripcion) {
     }
   }
 
-  // 2. Si no se halló en título, buscar en DESCRIPCIÓN
+  // 2. Descripción
   if (marca === 'Otra') {
     for (let b of sortedBrands) {
       if (hasBrand(descNorm, b)) {
@@ -109,8 +121,9 @@ function getCategoriaYMarca(titulo, descripcion) {
 
   // 4. Mapeo de Categoría
   let categoria = 'Otras';
+  const normRubros = normalizeText(rawRubros);
   for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-    if (rawRubros.includes(kw)) {
+    if (normRubros.includes(normalizeText(kw))) {
       categoria = cat;
       break;
     }
@@ -118,7 +131,7 @@ function getCategoriaYMarca(titulo, descripcion) {
 
   if (categoria === 'Otras') {
     for (let [kw, cat] of Object.entries(CATEGORIA_MAP)) {
-      if (fullNorm.includes(kw)) {
+      if (fullNorm.includes(normalizeText(kw))) {
         categoria = cat;
         break;
       }
