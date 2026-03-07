@@ -854,7 +854,7 @@
     "ubicacion": "Lote Aire Libre - 1351",
     "rubros": "Eq. ganadero, instalaciones, herramientas"
   },
-  "FEBRA IMPLEMENTOS": {
+  "FEBRA": {
     "display": "FEBRA IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1036 B",
     "rubros": "Fabricante de maquinaria agrícola"
@@ -1149,7 +1149,7 @@
     "ubicacion": "1423B / Carpa 1-J05",
     "rubros": "Venta/alquiler maquinaria, motores, siderurgia"
   },
-  "INDECAR MAQUINARIAS": {
+  "INDECAR": {
     "display": "INDECAR MAQUINARIAS",
     "ubicacion": "Lote Aire Libre - 540",
     "rubros": "Máquinas agrícolas"
@@ -1259,7 +1259,7 @@
     "ubicacion": "Lote Aire Libre - 1424 B",
     "rubros": "Herramientas, maquinaria, alquiler"
   },
-  "KAFÚ METALURGICA": {
+  "KAFÚ": {
     "display": "KAFÚ METALURGICA SRL",
     "ubicacion": "Lote Aire Libre - E22",
     "rubros": "Implementos agrícolas y forestales"
@@ -1685,11 +1685,6 @@
     "rubros": "Extracción de granos en silos"
   },
   "PAMPERO": {
-    "display": "PAMPERO",
-    "ubicacion": "Centro Agropampero",
-    "rubros": "Indumentaria industrial y de protección"
-  },
-  "PAMPERO IMPLEMENTOS": {
     "display": "PAMPERO IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1252",
     "rubros": "Máquinas agrícolas, importaciones"
@@ -1849,7 +1844,7 @@
     "ubicacion": "Carpa 2 - K02",
     "rubros": "Soldadura y corte"
   },
-  "RICHIGER MAQUINARIAS": {
+  "RICHIGER": {
     "display": "RICHIGER MAQUINARIAS",
     "ubicacion": "Lote Aire Libre - 110",
     "rubros": "Fabricante maquinaria, implementos"
@@ -2029,7 +2024,7 @@
     "ubicacion": "Filtros, maquinaria, herramientas",
     "rubros": "SERVICIOS VIALES**"
   },
-  "SYL IMPLEMENTOS": {
+  "SYL": {
     "display": "SYL IMPLEMENTOS",
     "ubicacion": "Lote Aire Libre - 1036A",
     "rubros": "Acoplados tolvas, fabricante"
@@ -2296,6 +2291,71 @@
   },
   "JOHN DEERE": {
     "display": "John Deere",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "KUHN": {
+    "display": "Kuhn",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "MARISPAN": {
+    "display": "Marispan",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "TT": {
+    "display": "TT Global",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "TERRANOVA": {
+    "display": "Terranova",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "AGROMETAL": {
+    "display": "Agrometal",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "STARA": {
+    "display": "Stara",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "FERTEC": {
+    "display": "Fertec",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "JACTO": {
+    "display": "Jacto",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "PLA": {
+    "display": "Pla",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "PRABA": {
+    "display": "Praba",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "TOLMET": {
+    "display": "Tolmet",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "PULQUI": {
+    "display": "Pulqui",
+    "ubicacion": "TBD",
+    "rubros": "Varios"
+  },
+  "FAVOT": {
+    "display": "Favot",
     "ubicacion": "TBD",
     "rubros": "Varios"
   }

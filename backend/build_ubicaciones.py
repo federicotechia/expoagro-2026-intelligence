@@ -20,6 +20,12 @@ def extract_core_brand(name):
     core = re.sub(r'\s+(S\.A\.|SRL|S\.R\.L\.|S\.A\.I\.|S\.A\.|S\.A\.C\.|SA|SOCIEDAD ANONIMA|S\.R\.L)\s*$', '', core, flags=re.IGNORECASE)
     core = core.rstrip('.')
     
+    # Sufijos de la industria comunes
+    ind_suffixes = ['MAQUINARIAS', 'MAQUINARIA', 'IMPLEMENTOS AGRICOLAS', 'IMPLEMENTOS', 'MAQUINAS AGRICOLAS', 'MAQUINARIA AGRICOLA', 'METALURGICA']
+    for s in ind_suffixes:
+        if core.endswith(' ' + s):
+            core = core[:-len(s)-1].strip()
+            
     # Prefijos comunes a ignorar
     prefixes = ['INDUSTRIAS', 'MAQUINAS AGRICOLAS', 'MAQUINARIA', 'AGRO', 'METALURGICA', 'IMPLEMENTOS']
     for p in prefixes:
@@ -69,7 +75,29 @@ manual_fixes = {
     "SYRA": "Syra",
     "AMAZONE": "Amazone",
     "ASCANELLI": "Ascanelli S.A.",
-    "THERRA": "Therra"
+    "THERRA": "Therra",
+    "KUHN": "Kuhn",
+    "MARISPAN": "Marispan",
+    "INDECAR": "Indecar",
+    "TT": "TT Global",
+    "TERRANOVA": "Terranova",
+    "PLANTIUM": "Plantium",
+    "AGROMETAL": "Agrometal",
+    "TANZI": "Tanzi",
+    "GIORGI": "Giorgi",
+    "MAINERO": "Mainero",
+    "YOMEL": "Yomel",
+    "STARA": "Stara",
+    "AKRON": "Akron",
+    "CESTARI": "Cestari",
+    "FERTEC": "Fertec",
+    "METALFOR": "Metalfor",
+    "JACTO": "Jacto",
+    "PLA": "Pla",
+    "PRABA": "Praba",
+    "TOLMET": "Tolmet",
+    "PULQUI": "Pulqui",
+    "FAVOT": "Favot"
 }
 
 for core, display in manual_fixes.items():
