@@ -101,14 +101,30 @@ async function saveCache(nuevasNoticias) {
 
 /**
  * GET /api/noticias
- * Devuelve las noticias cacheadas de ExpoAgro 2026.
- * Query params:
- *   - buscar: texto libre para filtrar por título o descripción
- *   - page: número de página (default 1)
- *   - limit: ítems por página (default 20)
  */
-app.get('/api/noticias', (req, res) => {
-    let noticias = [...cache.noticias];
+app.get('/api/noticias', async (req, res) => {
+    let noticias = [];
+
+    // En Vercel (serverless), es mejor consultar directo a Supabase
+    try {
+        if (process.env.SUPABASE_URL) {
+            const { data, error } = await supabase
+                .from('noticias')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (!error && data) {
+                noticias = data;
+            } else if (error) {
+                console.error("Supabase Error:", error.message);
+                noticias = [...cache.noticias];
+            }
+        } else {
+            noticias = [...cache.noticias];
+        }
+    } catch (e) {
+        noticias = [...cache.noticias];
+    }
 
     // Filtro de búsqueda
     const buscar = req.query.buscar?.toLowerCase();
@@ -120,12 +136,11 @@ app.get('/api/noticias', (req, res) => {
         );
     }
 
-    // Paginación
+    // Paginación y Orden
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 20;
-
-    // Ordenar por fecha (default descendente)
+    const limit = parseInt(req.query.limit) || 1000; // Aumentado para el mapa
     const orden = req.query.orden || 'desc';
+
     noticias.sort((a, b) => {
         const dateA = new Date(a.fecha || 0).getTime();
         const dateB = new Date(b.fecha || 0).getTime();
@@ -142,7 +157,7 @@ app.get('/api/noticias', (req, res) => {
         total,
         page,
         totalPages,
-        lastUpdated: cache.lastUpdated,
+        lastUpdated: cache.lastUpdated || new Date().toISOString(),
         isUpdating: cache.isUpdating,
         noticias: paginated,
     });
@@ -434,18 +449,6 @@ app.get('/api/mapa', (req, res) => {
                 }
             };
 
-            // Habilitar click para ver coordenadas (Calibración)
-            map.on('click', function(e) {
-                const x = (e.latlng.lng / W).toFixed(4);
-                const y = (1 - (e.latlng.lat / H)).toFixed(4);
-                
-                L.popup()
-                    .setLatLng(e.latlng)
-                    .setContent('<div style="color:black; padding:5px;"><b>Coordenadas:</b><br>x: ' + x + '<br>y: ' + y + '<br><br><small>Copia estas para gen_full_grid.py</small></div>')
-                    .openOn(map);
-                
-                console.log('Click en stand:', { "x": parseFloat(x), "y": parseFloat(y) });
-            });
         });
     </script>
 </body>
