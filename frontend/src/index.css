@@ -738,4 +738,22 @@ body {
   .news-grid {
     grid-template-columns: 1fr;
   }
+
+  .map-view-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .map-sidebar {
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .map-embed iframe {
+    height: 500px !important;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
 }

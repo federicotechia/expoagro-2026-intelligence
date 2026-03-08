@@ -339,7 +339,17 @@ export default function App() {
                       <div key={sec} className="sector-group">
                         <h5>📍 {sec}</h5>
                         {standsEnSector.map((stand, i) => (
-                          <div key={i} className="stand-item">
+                          <div
+                            key={i}
+                            className="stand-item"
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => {
+                              const iframe = document.getElementById('map-iframe');
+                              if (iframe && iframe.contentWindow.focusStand) {
+                                iframe.contentWindow.focusStand(stand.marca);
+                              }
+                            }}
+                          >
                             <span className="stand-brand">{stand.marca}</span>
                             <span className="stand-loc">{stand.ubicacion}</span>
                           </div>
@@ -351,7 +361,14 @@ export default function App() {
               </div>
             </div>
             <div className="map-embed">
-              <iframe src={`${API_BASE}/mapa`} title="Plano ExpoAgro 2026" width="100%" height="800px" style={{ border: 'none', borderRadius: '8px' }} />
+              <iframe
+                id="map-iframe"
+                src={`${API_BASE}/mapa?t=${Date.now()}`}
+                title="Plano ExpoAgro 2026"
+                width="100%"
+                height="800px"
+                style={{ border: 'none', borderRadius: '8px' }}
+              />
             </div>
           </div>
         </main>

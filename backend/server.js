@@ -275,19 +275,211 @@ app.post('/api/refresh', async (req, res) => {
 
 /**
  * GET /api/mapa
- * Sirve el PDF del plano de la expo.
+ * Sirve una página HTML interactiva con el plano de la expo.
  */
 app.get('/api/mapa', (req, res) => {
-    const mapaPath = path.join(__dirname, '..', 'infoextra', 'EXPOAGRO-2026-Plano-Expositores-2026-01-30-CON-final (1).pdf');
-    if (fs.existsSync(mapaPath)) {
-        res.setHeader('Content-Type', 'application/pdf');
-        res.sendFile(mapaPath);
+    res.send(`
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa Interactivo ExpoAgro 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { margin: 0; padding: 0; background: #1a1a1a; color: white; font-family: sans-serif; overflow: hidden; }
+        #map { height: 100vh; width: 100vw; background: #1a1a1a; }
+        .marker-label-container { text-align: center; }
+        .marker-label {
+            background: rgba(220, 38, 38, 0.95);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+            border: 1px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            display: inline-block;
+            transform: translate(-50%, 50%);
+        }
+        .info-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 11px;
+            border: 1px solid #ea0b17;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="info-panel">
+        <b style="color: #ea0b17">EXPOAGRO 2026 - NOVEDADES</b><br>
+        • Use gestos para zoom<br>
+        • Toque un punto para ver detalles
+    </div>
+    <script>
+        const W = 7415;
+        const H = 5241;
+
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -3,
+            maxZoom: 1
+        });
+
+        const bounds = [[0, 0], [H, W]];
+        L.imageOverlay('/api/mapa-image', bounds).addTo(map);
+        map.fitBounds(bounds);
+
+        Promise.all([
+            fetch('/api/noticias?limit=1000').then(r => r.json()),
+            fetch('/api/map-coords').then(r => r.json()),
+            fetch('/api/ubicaciones').then(r => r.json())
+        ]).then(([noticiasRes, coords, dict]) => {
+            const noticias = noticiasRes.noticias || [];
+            
+            const findUbicacion = (marca) => {
+                if (!marca) return null;
+                const m = marca.toUpperCase();
+                if (dict[m]) return dict[m].ubicacion;
+                const key = Object.keys(dict).find(k => (k.length > 3 && m.includes(k)) || (m.length > 3 && k.includes(m)));
+                return key ? dict[key].ubicacion : null;
+            };
+
+            noticias.forEach(n => {
+                if (!n.ubicacion || n.ubicacion === 'TBD') {
+                    const u = findUbicacion(n.marca);
+                    if (u) n.ubicacion = u;
+                }
+            });
+
+            const markers = {};
+
+            noticias.forEach(n => {
+                let standId = null;
+                
+                // 1. Forzado manual para casos problemáticos de nombres
+                let marcaNormalizada = n.marca ? n.marca.toUpperCase() : '';
+                if (marcaNormalizada.includes('IFN') || marcaNormalizada.includes('IFC')) marcaNormalizada = 'IFC TECNO';
+                if (marcaNormalizada.includes('INGERSOLL')) marcaNormalizada = 'INGERSOLL ARGENTINA';
+                if (marcaNormalizada.includes('DEERE')) marcaNormalizada = 'JOHN DEERE';
+
+                // 2. Intentar obtener el lote de la noticia o del diccionario
+                let ubicacion = n.ubicacion;
+                if (!ubicacion || ubicacion === 'TBD') {
+                    ubicacion = findUbicacion(marcaNormalizada);
+                }
+
+                if (ubicacion && ubicacion !== 'TBD') {
+                    const match = ubicacion.match(/([A-Z]*\\d+[A-Z]*)/);
+                    standId = match ? match[1] : null;
+                }
+
+                // 3. Casos específicos forzados por lote si el nombre coincide
+                if (marcaNormalizada === 'IFC TECNO') standId = '514';
+                if (marcaNormalizada === 'INGERSOLL ARGENTINA') standId = 'C08';
+
+                if (standId && coords[standId]) {
+                    const lat = (1 - coords[standId].y) * H;
+                    const lng = coords[standId].x * W;
+
+                    const marker = L.circleMarker([lat, lng], {
+                        radius: 8,
+                        fillColor: "#ea0b17",
+                        color: "#fff",
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map);
+
+                    const popupContent = \`
+                        <div style="color: black; font-family: sans-serif; min-width: 180px;">
+                            <b style="color: #ea0b17; font-size: 15px;">\${n.marca}</b><br>
+                            <b style="color: #666;">Stand: \${ubicacion || n.ubicacion}</b><hr style="border: 0.5px solid #eee;">
+                            <p style="margin: 8px 0; font-size: 12px; line-height: 1.4;">\${n.titulo}</p>
+                            <a href="\${n.url}" target="_blank" style="display: block; text-align: center; padding: 6px; background: #ea0b17; color: white; text-decoration: none; border-radius: 4px; font-size: 11px;">VER DETALLES</a>
+                        </div>
+                    \`;
+                    
+                    marker.bindPopup(popupContent);
+                    markers[n.marca] = marker;
+                    
+                    const cleanUbic = ubicacion && ubicacion.includes('-') ? ubicacion.split('-').pop().trim() : (standId || '');
+
+                    const labelIcon = L.divIcon({
+                        className: 'marker-label-container',
+                        html: \`<div class="marker-label">\${n.marca}<br><span style="font-size: 9px; font-weight: normal; opacity: 0.9;">\${cleanUbic}</span></div>\`,
+                        iconSize: [0, 0],
+                        iconAnchor: [0, 0]
+                    });
+
+                    L.marker([lat, lng], { icon: labelIcon, interactive: false }).addTo(map);
+                }
+            });
+
+            // Función global para que el padre pueda centrar el mapa
+            window.focusStand = (marca) => {
+                const marker = markers[marca];
+                if (marker) {
+                    map.setView(marker.getLatLng(), 0); // Zoom 0 es bastante cerca en CRS.Simple
+                    marker.openPopup();
+                }
+            };
+
+            // Habilitar click para ver coordenadas (Calibración)
+            map.on('click', function(e) {
+                const x = (e.latlng.lng / W).toFixed(4);
+                const y = (1 - (e.latlng.lat / H)).toFixed(4);
+                
+                L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent('<div style="color:black; padding:5px;"><b>Coordenadas:</b><br>x: ' + x + '<br>y: ' + y + '<br><br><small>Copia estas para gen_full_grid.py</small></div>')
+                    .openOn(map);
+                
+                console.log('Click en stand:', { "x": parseFloat(x), "y": parseFloat(y) });
+            });
+        });
+    </script>
+</body>
+</html>
+    `);
+});
+
+app.get('/api/ubicaciones', (req, res) => {
+    const ubicPath = path.join(__dirname, 'ubicaciones.json');
+    if (fs.existsSync(ubicPath)) {
+        res.sendFile(ubicPath);
     } else {
-        res.status(404).send('Mapa no encontrado en el servidor.');
+        res.json({});
     }
 });
 
-// ─── Start ──────────────────────────────────────────────────────────────────────
+app.get('/api/mapa-image', (req, res) => {
+    const imgPath = path.join(__dirname, 'mapa_expoagro.jpg');
+    if (fs.existsSync(imgPath)) {
+        res.sendFile(imgPath);
+    } else {
+        res.status(404).send('Imagen del mapa no encontrada.');
+    }
+});
+
+app.get('/api/map-coords', (req, res) => {
+    const coordsPath = path.join(__dirname, 'map_coords.json');
+    if (fs.existsSync(coordsPath)) {
+        res.sendFile(coordsPath);
+    } else {
+        res.json({});
+    }
+});
+
 loadCache();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -297,7 +489,6 @@ if (process.env.NODE_ENV !== 'production') {
         console.log(`   GET  /api/status   → estado del cache`);
         console.log(`   POST /api/refresh  → scrapear ahora\n`);
 
-        // Auto-scraping inicial si el cache está vacío
         if (cache.noticias.length === 0) {
             console.log('📡 Cache vacío → iniciando scraping automático...');
             cache.isUpdating = true;
