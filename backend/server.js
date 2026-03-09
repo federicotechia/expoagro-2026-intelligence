@@ -397,26 +397,22 @@ app.get('/api/mapa', (req, res) => {
     </div>
     <script>
             function toggleFullscreen() {
-                const el = document.documentElement;
-                const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+                // Informar al padre (React) para que expanda el iframe
+                window.parent.postMessage({ type: 'TOGGLE_FULLSCREEN' }, '*');
 
+                // También intentar el Fullscreen nativo (secundario)
+                const el = document.documentElement;
+                const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
                 if (!isFs) {
-                    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
-                    if (req) {
-                        req.call(el).then(() => {
-                            setTimeout(() => { if(window.map) window.map.invalidateSize(); }, 500);
-                        }).catch(err => {
-                            console.error("Error al entrar en pantalla completa:", err);
-                        });
-                    }
+                    const req = el.requestFullscreen || el.webkitRequestFullscreen;
+                    if (req) req.call(el).catch(() => {});
                 } else {
-                    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
-                    if (exit) {
-                        exit.call(document).then(() => {
-                            setTimeout(() => { if(window.map) window.map.invalidateSize(); }, 500);
-                        });
-                    }
+                    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                    if (exit) exit.call(document).catch(() => {});
                 }
+                
+                // Forzar re-layout del mapa
+                setTimeout(() => { if (window.map) window.map.invalidateSize(); }, 300);
             }
 
             const W = 7415;

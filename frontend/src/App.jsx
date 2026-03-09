@@ -15,6 +15,18 @@ export default function App() {
   const [filtroCategoria, setFiltroCategoria] = useState('Todas');
   const [isScraping, setIsScraping] = useState(false);
   const [currentTab, setCurrentTab] = useState('noticias'); // 'noticias' | 'mapa'
+  const [isMapFullscreen, setIsMapFullscreen] = useState(false);
+
+  // Escuchar mensajes del iframe para pantalla completa (especialmente para iOS)
+  useEffect(() => {
+    const handleMessage = (e) => {
+      if (e.data.type === 'TOGGLE_FULLSCREEN') {
+        setIsMapFullscreen(prev => !prev);
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   // Modal para carga manual
   const [showManualModal, setShowManualModal] = useState(false);
@@ -377,7 +389,7 @@ export default function App() {
                 }
               </div>
             </div>
-            <div className="map-embed">
+            <div className={`map-embed ${isMapFullscreen ? 'fullscreen-mode' : ''}`}>
               <iframe
                 id="map-iframe"
                 src={`${API_BASE}/mapa?t=${Date.now()}`}

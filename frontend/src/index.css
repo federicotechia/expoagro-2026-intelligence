@@ -474,6 +474,24 @@ body {
   overflow: hidden;
 }
 
+/* ─── Fullscreen Map ─── */
+.map-embed.fullscreen-mode {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background-color: #1a1a1a;
+}
+
+.map-embed.fullscreen-mode iframe {
+  height: 100vh !important;
+  border: none !important;
+}
+
 /* ─── Marketing Intelligence Features ─── */
 .header-actions {
   display: flex;
