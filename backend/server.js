@@ -379,6 +379,10 @@ app.get('/api/mapa', (req, res) => {
         }
         .fullscreen-btn:hover { background: #b91c1c; transform: scale(1.05); }
         .fullscreen-btn:active { transform: scale(0.95); }
+
+        /* Estilos para cuando está en pantalla completa */
+        :fullscreen #map { height: 100vh !important; width: 100vw !important; }
+        :-webkit-full-screen #map { height: 100vh !important; width: 100vw !important; }
     </style>
 </head>
 <body>
@@ -392,14 +396,38 @@ app.get('/api/mapa', (req, res) => {
         • Toque un punto para ver detalles
     </div>
     <script>
-        const W = 7415;
-        const H = 5241;
+            function toggleFullscreen() {
+                const el = document.documentElement;
+                const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
 
-        const map = L.map('map', {
-            crs: L.CRS.Simple,
-            minZoom: -3,
-            maxZoom: 2
-        });
+                if (!isFs) {
+                    const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+                    if (req) {
+                        req.call(el).then(() => {
+                            setTimeout(() => { if(window.map) window.map.invalidateSize(); }, 500);
+                        }).catch(err => {
+                            console.error("Error al entrar en pantalla completa:", err);
+                        });
+                    }
+                } else {
+                    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+                    if (exit) {
+                        exit.call(document).then(() => {
+                            setTimeout(() => { if(window.map) window.map.invalidateSize(); }, 500);
+                        });
+                    }
+                }
+            }
+
+            const W = 7415;
+            const H = 5241;
+
+            const map = L.map('map', {
+                crs: L.CRS.Simple,
+                minZoom: -3,
+                maxZoom: 2
+            });
+            window.map = map; // Hacerlo accesible
 
         const bounds = [[0, 0], [H, W]];
         L.imageOverlay('/api/mapa-image', bounds).addTo(map);
@@ -492,19 +520,7 @@ app.get('/api/mapa', (req, res) => {
                     L.marker([lat, lng], { icon: labelIcon, interactive: false }).addTo(map);
                 }
             });
-
-            function toggleFullscreen() {
-                const mapEl = document.getElementById('map');
-                const isFs = !!document.fullscreenElement || !!document.webkitFullscreenElement;
-
-                if (!isFs) {
-                    const req = mapEl.requestFullscreen || mapEl.webkitRequestFullscreen || mapEl.msRequestFullscreen;
-                    if (req) req.call(mapEl).then(() => setTimeout(() => map.invalidateSize(), 500));
-                } else {
-                    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
-                    if (exit) exit.call(document).then(() => setTimeout(() => map.invalidateSize(), 500));
-                }
-            }
+    
 
             // Función global para que el padre pueda centrar el mapa
             window.focusStand = (marca) => {
