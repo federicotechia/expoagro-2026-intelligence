@@ -495,14 +495,14 @@ app.get('/api/mapa', (req, res) => {
 
             function toggleFullscreen() {
                 const mapEl = document.getElementById('map');
-                if (!document.fullscreenElement) {
-                    if (mapEl.requestFullscreen) mapEl.requestFullscreen();
-                    else if (mapEl.webkitRequestFullscreen) mapEl.webkitRequestFullscreen();
-                    else if (mapEl.msRequestFullscreen) mapEl.msRequestFullscreen();
+                const isFs = !!document.fullscreenElement || !!document.webkitFullscreenElement;
+
+                if (!isFs) {
+                    const req = mapEl.requestFullscreen || mapEl.webkitRequestFullscreen || mapEl.msRequestFullscreen;
+                    if (req) req.call(mapEl).then(() => setTimeout(() => map.invalidateSize(), 500));
                 } else {
-                    if (document.exitFullscreen) document.exitFullscreen();
-                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-                    else if (document.msExitFullscreen) document.msExitFullscreen();
+                    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+                    if (exit) exit.call(document).then(() => setTimeout(() => map.invalidateSize(), 500));
                 }
             }
 

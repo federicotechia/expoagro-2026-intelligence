@@ -385,6 +385,8 @@ export default function App() {
                 width="100%"
                 height="800px"
                 style={{ border: 'none', borderRadius: '8px' }}
+                allowFullScreen
+                allow="fullscreen"
               />
             </div>
           </div>
