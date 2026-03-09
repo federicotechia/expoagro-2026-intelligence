@@ -358,9 +358,33 @@ app.get('/api/mapa', (req, res) => {
             pointer-events: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
+        .fullscreen-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2000;
+            background: #dc2626;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+        .fullscreen-btn:hover { background: #b91c1c; transform: scale(1.05); }
+        .fullscreen-btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">
+        <span>⛶</span> Pantalla Completa
+    </button>
     <div id="map"></div>
     <div class="info-panel">
         <b style="color: #ea0b17">EXPOAGRO 2026 - NOVEDADES</b><br>
@@ -468,6 +492,19 @@ app.get('/api/mapa', (req, res) => {
                     L.marker([lat, lng], { icon: labelIcon, interactive: false }).addTo(map);
                 }
             });
+
+            function toggleFullscreen() {
+                const mapEl = document.getElementById('map');
+                if (!document.fullscreenElement) {
+                    if (mapEl.requestFullscreen) mapEl.requestFullscreen();
+                    else if (mapEl.webkitRequestFullscreen) mapEl.webkitRequestFullscreen();
+                    else if (mapEl.msRequestFullscreen) mapEl.msRequestFullscreen();
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                    else if (document.msExitFullscreen) document.msExitFullscreen();
+                }
+            }
 
             // Función global para que el padre pueda centrar el mapa
             window.focusStand = (marca) => {
