@@ -380,6 +380,28 @@ app.get('/api/mapa', (req, res) => {
         .fullscreen-btn:hover { background: #b91c1c; transform: scale(1.05); }
         .fullscreen-btn:active { transform: scale(0.95); }
 
+        /* Estilo para Crucianelli */
+        .crucianelli-label {
+            background: #ea0b17;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 800;
+            white-space: nowrap;
+            border: 2px solid white;
+            box-shadow: 0 0 15px rgba(234, 11, 23, 0.8);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            animation: pulse-crucianelli 2s infinite;
+            z-index: 5000;
+        }
+
+        @keyframes pulse-crucianelli {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(234, 11, 23, 0.8); }
+            50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(234, 11, 23, 1); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(234, 11, 23, 0.8); }
+        }
+
         /* Estilos para cuando está en pantalla completa */
         :fullscreen #map { height: 100vh !important; width: 100vw !important; }
         :-webkit-full-screen #map { height: 100vh !important; width: 100vw !important; }
@@ -428,6 +450,32 @@ app.get('/api/mapa', (req, res) => {
         const bounds = [[0, 0], [H, W]];
         L.imageOverlay('/api/mapa-image', bounds).addTo(map);
         map.fitBounds(bounds, { padding: [10, 10], maxZoom: -1 }); // Asegurar que entre completo
+
+        // --- RESALTAR CRUCIANELLI (STAND 520) ---
+        const cX = 0.2847;
+        const cY = 0.5528;
+        const cLat = (1 - cY) * H;
+        const cLng = cX * W;
+
+        const crucianelliIcon = L.divIcon({
+            className: 'crucianelli-label-wrapper',
+            html: '<div class="crucianelli-label">CRUCIANELLI 520</div>',
+            iconSize: [0, 0],
+            iconAnchor: [60, 10]
+        });
+
+        // Punto de referencia pulsante
+        L.circleMarker([cLat, cLng], {
+            radius: 12,
+            fillColor: "#ea0b17",
+            color: "#fff",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 1
+        }).addTo(map).bindPopup('<b style="color:#ea0b17; font-size:16px;">CRUCIANELLI</b><br>Stand 520 - Punto de Referencia');
+
+        L.marker([cLat, cLng], { icon: crucianelliIcon, interactive: false }).addTo(map);
+        // ----------------------------------------
 
         Promise.all([
             fetch('/api/noticias?limit=1000').then(r => r.json()),
