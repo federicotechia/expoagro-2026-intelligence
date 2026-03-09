@@ -315,6 +315,23 @@ export default function App() {
                       <a href={n.url} target="_blank" rel="noopener noreferrer" className="btn-source">
                         🔗 Ver Fuente
                       </a>
+
+                      <button
+                        className="btn-delete"
+                        style={{ border: 'none', background: 'transparent', color: '#ff4444', fontSize: '11px', cursor: 'pointer', padding: '0 5px' }}
+                        onClick={async () => {
+                          if (window.confirm('¿Eliminar esta novedad?')) {
+                            try {
+                              const res = await fetch(`${API_BASE}/noticias/${encodeURIComponent(n.url)}`, { method: 'DELETE' });
+                              if (res.ok) fetchNews();
+                            } catch (err) {
+                              alert('Error al borrar');
+                            }
+                          }
+                        }}
+                      >
+                        🗑️ Borrar
+                      </button>
                     </div>
                   </div>
                 </div>

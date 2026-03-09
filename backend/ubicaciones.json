@@ -79,6 +79,11 @@
     "ubicacion": "Lote Aire Libre - 1010",
     "rubros": "Máquinas viales, herramientas, maquinaria"
   },
+  "FPT": {
+    "display": "EURO TORQUE - FPT",
+    "ubicacion": "Sector Ganadería - 1914",
+    "rubros": "Motores, grupos electrógenos, servicios"
+  },
   "AMG VIAL": {
     "display": "AMG VIAL",
     "ubicacion": "Lote Aire Libre - E30",
@@ -1083,6 +1088,16 @@
     "display": "GRUPO PREMIERE",
     "ubicacion": "Carpa 2 - 012",
     "rubros": "Construcción"
+  },
+  "GRUPO GR": {
+    "display": "Grupo GR (PT FARM / INDECAR)",
+    "ubicacion": "Lote Aire Libre - 540",
+    "rubros": "Maquinaria agrícola"
+  },
+  "PT FARM": {
+    "display": "PT Farm (Grupo GR)",
+    "ubicacion": "Lote Aire Libre - 540",
+    "rubros": "Maquinaria agrícola"
   },
   "GUIA MANT INDUSTRIAL": {
     "display": "GUIA MANT. INDUSTRIAL",

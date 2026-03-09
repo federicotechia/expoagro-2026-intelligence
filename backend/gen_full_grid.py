@@ -99,6 +99,7 @@ def generate_grid():
         "1450": {"x": 0.8089, "y": 0.3986}, # Iveco
         "1468": {"x": 0.7833, "y": 0.3039}, # Tedeschi
         "1470": {"x": 0.7733, "y": 0.3299}, # Credicoop
+        "1914": {"x": 0.9520, "y": 0.4011}, # EURO TORQUE - FPT
         "1918": {"x": 0.9753, "y": 0.4077}, # Bernardin
         "C08": {"x": 0.5168, "y": 0.3123},  # Ingersoll Argentina (Carpa)
         "NO5": {"x": 0.1931, "y": 0.7313},  # Case IH

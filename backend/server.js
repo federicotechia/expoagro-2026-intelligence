@@ -198,6 +198,33 @@ app.patch('/api/noticias/:id', async (req, res) => {
 });
 
 /**
+ * DELETE /api/noticias/:id
+ * Elimina una noticia
+ */
+app.delete('/api/noticias/:id', async (req, res) => {
+    const id = decodeURIComponent(req.params.id);
+
+    try {
+        // 1. Eliminar en Supabase
+        const { error } = await supabase
+            .from('noticias')
+            .delete()
+            .eq('url', id);
+
+        if (error) throw error;
+
+        // 2. Eliminar en cache local
+        cache.noticias = cache.noticias.filter(n => n.url !== id);
+        saveCache([]);
+
+        res.json({ ok: true, mensaje: 'Noticia eliminada' });
+    } catch (err) {
+        console.error('❌ Error eliminando noticia:', err.message);
+        res.status(500).json({ ok: false, mensaje: err.message });
+    }
+});
+
+/**
  * POST /api/noticias/manual
  * Agrega una noticia manualmente
  */
@@ -347,12 +374,12 @@ app.get('/api/mapa', (req, res) => {
         const map = L.map('map', {
             crs: L.CRS.Simple,
             minZoom: -3,
-            maxZoom: 1
+            maxZoom: 2
         });
 
         const bounds = [[0, 0], [H, W]];
         L.imageOverlay('/api/mapa-image', bounds).addTo(map);
-        map.fitBounds(bounds);
+        map.fitBounds(bounds, { padding: [10, 10], maxZoom: -1 }); // Asegurar que entre completo
 
         Promise.all([
             fetch('/api/noticias?limit=1000').then(r => r.json()),
@@ -386,6 +413,8 @@ app.get('/api/mapa', (req, res) => {
                 if (marcaNormalizada.includes('IFN') || marcaNormalizada.includes('IFC')) marcaNormalizada = 'IFC TECNO';
                 if (marcaNormalizada.includes('INGERSOLL')) marcaNormalizada = 'INGERSOLL ARGENTINA';
                 if (marcaNormalizada.includes('DEERE')) marcaNormalizada = 'JOHN DEERE';
+                if (marcaNormalizada.includes('EURO TORQUE') || marcaNormalizada.includes('FPT')) marcaNormalizada = 'FPT';
+                if (marcaNormalizada.includes('PT FARM') || marcaNormalizada.includes('GRUPO GR')) marcaNormalizada = 'PT FARM';
 
                 // 2. Intentar obtener el lote de la noticia o del diccionario
                 let ubicacion = n.ubicacion;
@@ -444,10 +473,22 @@ app.get('/api/mapa', (req, res) => {
             window.focusStand = (marca) => {
                 const marker = markers[marca];
                 if (marker) {
-                    map.setView(marker.getLatLng(), 0); // Zoom 0 es bastante cerca en CRS.Simple
+                    map.setView(marker.getLatLng(), 1); // Zoom 1 es zoomed-in en CRS.Simple con minZoom -3
                     marker.openPopup();
                 }
             };
+
+            // COORDINATE HELPER (Calibration Mode)
+            map.on('click', function(e) {
+                const y = 1 - (e.latlng.lat / H);
+                const x = e.latlng.lng / W;
+                console.log("Click coords: { \\"x\\": " + x.toFixed(4) + ", \\"y\\": " + y.toFixed(4) + " }");
+                
+                L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent("<b>X:</b> " + x.toFixed(4) + "<br><b>Y:</b> " + y.toFixed(4))
+                    .openOn(map);
+            });
 
         });
     </script>
