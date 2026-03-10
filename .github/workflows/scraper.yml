@@ -1,0 +1,37 @@
+name: Scraper Automático ExpoAgro 2026
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Se ejecuta cada 6 horas (puedes ajustarlo)
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🟢 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: 📦 Instalar dependencias del Backend
+        working-directory: ./backend
+        run: npm install
+
+      - name: 🎭 Instalar navegadores de Playwright
+        working-directory: ./backend
+        run: npx playwright install chromium --with-deps
+
+      - name: 🚀 Ejecutar Scraper
+        working-directory: ./backend
+        run: node auto_scraper.js
