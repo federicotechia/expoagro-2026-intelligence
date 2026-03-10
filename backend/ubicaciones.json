@@ -19,6 +19,11 @@
     "ubicacion": "Lote Aire Libre - 840",
     "rubros": "Sembradoras, máquinas agrícolas, accesorios de sembradoras"
   },
+  "AGROMETAL": {
+    "display": "Agrometal",
+    "ubicacion": "Lote Aire Libre - 840",
+    "rubros": "Sembradoras, máquinas agrícolas, accesorios de sembradoras"
+  },
   "AGROPRO": {
     "display": "AGROPRO",
     "ubicacion": "Espacio AgTech - AG29",
@@ -80,6 +85,16 @@
     "rubros": "Máquinas viales, herramientas, maquinaria"
   },
   "FPT": {
+    "display": "EURO TORQUE - FPT",
+    "ubicacion": "Sector Ganadería - 1914",
+    "rubros": "Motores, grupos electrógenos, servicios"
+  },
+  "PFT": {
+    "display": "EURO TORQUE - FPT",
+    "ubicacion": "Sector Ganadería - 1914",
+    "rubros": "Motores, grupos electrógenos, servicios"
+  },
+  "EURO TORQUE": {
     "display": "EURO TORQUE - FPT",
     "ubicacion": "Sector Ganadería - 1914",
     "rubros": "Motores, grupos electrógenos, servicios"
@@ -2105,7 +2120,12 @@
     "rubros": "Renovables, solar, grupos electrógenos"
   },
   "TBEH AGRO VIALES": {
-    "display": "TBEH - AGRO VIALES",
+    "display": "TBeH - AGRO VIALES",
+    "ubicacion": "Lote Aire Libre - 810",
+    "rubros": "Movimiento tierra, desmalezadoras"
+  },
+  "TBEH": {
+    "display": "TBeH",
     "ubicacion": "Lote Aire Libre - 810",
     "rubros": "Movimiento tierra, desmalezadoras"
   },

@@ -1,21 +1,9 @@
 {
   "noticias": [
     {
-      "titulo": "Altina muestra novedades y promociones en Expoagro",
-      "url": "https://maquinac.com/2026/03/altina-muestra-novedades-y-promociones-en-expoagro/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/03/Fertilizadora-Altina.jpg",
-      "fecha": "2026-03-09T03:23:17+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2025/03/Fertilizadora-Altina.jpg",
-      "descripcion": "Además de innovaciones tecnológicas, propone financiamiento especial para aprovechar en la feria.",
-      "fuente": "Maquinac",
-      "categoria": "Agricultura de Precisión",
-      "marca": "ALTINA",
-      "ubicacion": "Lote Aire Libre - 860"
-    },
-    {
       "titulo": "PFT lleva la producción nacional a Expoagro",
       "url": "https://maquinac.com/2026/03/pft-lleva-la-produccion-nacional-a-expoagro/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/FPT-en-Expoagro.jpg",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/FPT-en-Expoagro-e1773064688396.jpg",
       "fecha": "2026-03-09T03:09:55+00:00",
       "imagen": "https://maquinac.com/wp-content/uploads/2026/03/FPT-en-Expoagro.jpg",
       "descripcion": "Pone el foco en las soluciones pensadas para el agro, con la familia de motores fabricados en el país.",
@@ -35,6 +23,18 @@
       "categoria": "Otras",
       "marca": "PT FARM",
       "ubicacion": "Lote Aire Libre - 540"
+    },
+    {
+      "titulo": "Altina muestra novedades y promociones en Expoagro",
+      "url": "https://maquinac.com/2026/03/altina-muestra-novedades-y-promociones-en-expoagro/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/03/Fertilizadora-Altina.jpg",
+      "fecha": "2026-03-09T03:08:17+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/03/Fertilizadora-Altina.jpg",
+      "descripcion": "Además de innovaciones tecnológicas, propone financiamiento especial para aprovechar en la feria.",
+      "fuente": "Maquinac",
+      "categoria": "Agricultura de Precisión",
+      "marca": "ALTINA",
+      "ubicacion": "Lote Aire Libre - 860"
     },
     {
       "titulo": "New Holland lanza en Expoagro la pulverizadora Defensor 4000",
@@ -733,6 +733,66 @@
       "ubicacion": "TBD"
     },
     {
+      "titulo": "Arranca Expoagro con una lluvia de nuevas máquinas",
+      "url": "https://maquinac.com/2026/03/arranca-expoagro-con-una-lluvia-de-nuevas-maquinas/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
+      "fecha": "2026-03-10T03:30:29+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
+      "descripcion": "Los principales segmentos de equipos para el agro se renuevan, con fuerte participación de empresas nacionales y marcas globales.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
+      "titulo": "La cobertura más completa Expoagro 2026",
+      "url": "https://maquinac.com/2026/03/la-cobertura-mas-completa-expoagro-2026/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/01/Cobertura-Expoagro-2026.png",
+      "fecha": "2026-03-10T03:29:19+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/01/Cobertura-Expoagro-2026.png",
+      "descripcion": "Promociones, lanzamientos y novedades del mundo de las máquinas que se pueden ver en Expoagro 2026.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
+      "titulo": "VAF propone en Expoagro el piloto RTK a U$S 7.999",
+      "url": "https://maquinac.com/2026/03/vaf-en-expoagro-piloto-rtk-a-us-7-999/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
+      "fecha": "2026-03-10T03:10:09+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
+      "descripcion": "El precio especial está vigente durante la megamuestra. Además, la empresa exhibe soluciones para siembra.",
+      "fuente": "Maquinac",
+      "categoria": "Agricultura de Precisión",
+      "marca": "VAF",
+      "ubicacion": "Espacio AgTech - AG21"
+    },
+    {
+      "titulo": "Kuhn lanza en Expoagro el mixer Profile 20.2 DM",
+      "url": "https://maquinac.com/2026/03/kuhn-lanza-en-expoagro-el-mixer-profile-20-2-dm/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
+      "fecha": "2026-03-10T03:09:24+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
+      "descripcion": "A través de Luis Ángel Lancioni, su representante oficial en el país, presenta el modelo vertical, de 20.000 litros de capacidad y dos sinfines.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "KUHN",
+      "ubicacion": "Lote Aire Libre - 218"
+    },
+    {
+      "titulo": "TBeH presenta sus últimos desarrollos en Expoagro",
+      "url": "https://maquinac.com/2026/03/tbeh-presenta-sus-ultimos-desarrollos-en-expoagro/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
+      "fecha": "2026-03-10T03:08:17+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
+      "descripcion": "Redobla la apuesta en fabricación nacional con el manipulador MT 37 y avanza en la preparación de un nuevo modelo",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "TBEH",
+      "ubicacion": "Lote Aire Libre - 810"
+    },
+    {
       "titulo": "Todos los ganadores del Premio Ternium Expoagro 2026",
       "url": "https://maquinac.com/2025/12/todos-los-ganadores-de-la-10-edicion-de-los-premios-ternium/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2018/12/Premio-Ternium-Expoagro.jpg",
@@ -745,5 +805,5 @@
       "ubicacion": "Lote Aire Libre - 570"
     }
   ],
-  "lastUpdated": "2026-03-09T11:13:11.922Z"
+  "lastUpdated": "2026-03-10T09:42:45.408Z"
 }
