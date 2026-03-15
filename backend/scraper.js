@@ -142,25 +142,13 @@ function getCategoriaYMarca(titulo, descripcion) {
 }
 
 // Filtrar noticias que sean de ExpoAgro 2026
-function isExpoAgro2026(article, currentUrl = '') {
+function isExpoAgro2026(article) {
   const titleLower = article.titulo.toLowerCase();
   const urlLower = article.url.toLowerCase();
 
-  let hasKeyword = KEYWORDS_EXPOAGRO.some(
+  const hasKeyword = KEYWORDS_EXPOAGRO.some(
     (kw) => titleLower.includes(kw) || urlLower.includes(kw)
   );
-
-  // Si proviene de una URL de búsqueda por "expoagro", confiamos en que el sitio ya lo filtró
-  if (currentUrl.includes('s=expoagro')) {
-    hasKeyword = true;
-  }
-
-  // Si el link tiene la fecha reciente y estamos en la sección de exposiciones, asumimos que es ExpoAgro
-  if (currentUrl.includes('exposiciones')) {
-    if (urlLower.includes('/2026/02/') || urlLower.includes('/2026/03/') || titleLower.includes('2026')) {
-      hasKeyword = true;
-    }
-  }
 
   if (!hasKeyword) return false;
 
@@ -174,6 +162,7 @@ function isExpoAgro2026(article, currentUrl = '') {
     return false;
   }
 
+  // Si no menciona ningún año pero tiene la keyword, la dejamos pasar (puede ser una noticia actual sin año en el título)
   return true;
 }
 
@@ -321,7 +310,7 @@ async function scrapeAllNews(maxPages = 3) {
         console.log(`   Encontrados ${articles.length} artículos`);
 
         // Filtrar solo ExpoAgro 2026 antes de visitar detalles
-        const filtered = articles.filter(art => isExpoAgro2026(art, currentUrl));
+        const filtered = articles.filter(isExpoAgro2026);
         console.log(
           `   ✅ ${filtered.length} corresponden a ExpoAgro 2026`
         );
