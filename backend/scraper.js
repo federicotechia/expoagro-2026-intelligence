@@ -168,7 +168,7 @@ function isExpoAgro2026(article) {
 
 async function scrapeArticleDetail(page, url) {
   try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
     // Fecha: buscar en meta, time o texto visible
     let fecha = null;
@@ -237,7 +237,7 @@ async function scrapeArticleDetail(page, url) {
 }
 
 async function scrapeListPage(page, url) {
-  await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
   const articles = await page.evaluate(() => {
     const items = [];
