@@ -36,7 +36,8 @@ export default function App() {
     url: '',
     marca: '',
     categoria: 'Siembre',
-    ubicacion: ''
+    ubicacion: '',
+    imagen: ''
   });
 
   const fetchNews = async () => {
@@ -105,7 +106,7 @@ export default function App() {
 
       alert('Noticia agregada con éxito');
       setShowManualModal(false);
-      setManualData({ titulo: '', descripcion: '', url: '', marca: '', categoria: 'Sembradoras', ubicacion: '' });
+      setManualData({ titulo: '', descripcion: '', url: '', marca: '', categoria: 'Sembradoras', ubicacion: '', imagen: '' });
       fetchNews();
     } catch (err) {
       alert(err.message);
@@ -415,6 +416,7 @@ export default function App() {
               <textarea required placeholder="Descripción técnica / Resumen" value={manualData.descripcion} onChange={e => setManualData({ ...manualData, descripcion: e.target.value })} className="search-input" style={{ height: '100px' }} />
               <input placeholder="Marca / Empresa" value={manualData.marca} onChange={e => setManualData({ ...manualData, marca: e.target.value })} className="search-input" />
               <input placeholder="Ubicación (Stand)" value={manualData.ubicacion} onChange={e => setManualData({ ...manualData, ubicacion: e.target.value })} className="search-input" />
+              <input placeholder="URL de la Imagen (opcional)" value={manualData.imagen} onChange={e => setManualData({ ...manualData, imagen: e.target.value })} className="search-input" />
               <input placeholder="URL de referencia (opcional)" value={manualData.url} onChange={e => setManualData({ ...manualData, url: e.target.value })} className="search-input" />
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                 <button type="submit" className="btn-primary">Guardar</button>

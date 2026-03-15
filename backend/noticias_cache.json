@@ -1,6 +1,54 @@
 {
   "noticias": [
     {
+      "titulo": "Arranca Expoagro con una lluvia de nuevas máquinas",
+      "url": "https://maquinac.com/2026/03/arranca-expoagro-con-una-lluvia-de-nuevas-maquinas/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
+      "fecha": "2026-03-10T03:30:29+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
+      "descripcion": "Los principales segmentos de equipos para el agro se renuevan, con fuerte participación de empresas nacionales y marcas globales.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
+      "titulo": "VAF propone en Expoagro el piloto RTK a U$S 7.999",
+      "url": "https://maquinac.com/2026/03/vaf-en-expoagro-piloto-rtk-a-us-7-999/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
+      "fecha": "2026-03-10T03:10:09+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
+      "descripcion": "El precio especial está vigente durante la megamuestra. Además, la empresa exhibe soluciones para siembra.",
+      "fuente": "Maquinac",
+      "categoria": "Agricultura de Precisión",
+      "marca": "VAF",
+      "ubicacion": "Espacio AgTech - AG21"
+    },
+    {
+      "titulo": "Kuhn lanza en Expoagro el mixer Profile 20.2 DM",
+      "url": "https://maquinac.com/2026/03/kuhn-lanza-en-expoagro-el-mixer-profile-20-2-dm/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
+      "fecha": "2026-03-10T03:09:24+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
+      "descripcion": "A través de Luis Ángel Lancioni, su representante oficial en el país, presenta el modelo vertical, de 20.000 litros de capacidad y dos sinfines.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "KUHN",
+      "ubicacion": "Lote Aire Libre - 218"
+    },
+    {
+      "titulo": "TBeH presenta sus últimos desarrollos en Expoagro",
+      "url": "https://maquinac.com/2026/03/tbeh-presenta-sus-ultimos-desarrollos-en-expoagro/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
+      "fecha": "2026-03-10T03:08:17+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
+      "descripcion": "Redobla la apuesta en fabricación nacional con el manipulador MT 37 y avanza en la preparación de un nuevo modelo",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "TBEH",
+      "ubicacion": "Lote Aire Libre - 810"
+    },
+    {
       "titulo": "PFT lleva la producción nacional a Expoagro",
       "url": "https://maquinac.com/2026/03/pft-lleva-la-produccion-nacional-a-expoagro/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/FPT-en-Expoagro-e1773064688396.jpg",
@@ -9,8 +57,8 @@
       "descripcion": "Pone el foco en las soluciones pensadas para el agro, con la familia de motores fabricados en el país.",
       "fuente": "Maquinac",
       "categoria": "Otras",
-      "marca": "Otra",
-      "ubicacion": "TBD"
+      "marca": "PFT",
+      "ubicacion": "Sector Ganadería - 1914"
     },
     {
       "titulo": "PT Farm apuesta a la vidriera de Expoagro 2026",
@@ -109,6 +157,18 @@
       "ubicacion": "Lote Aire Libre - 510"
     },
     {
+      "titulo": "Claas lanza en Argentina nuevas cosechadoras y el draper Convio Flex",
+      "url": "https://maquinac.com/2026/03/claas-lanza-en-argentina-nuevas-cosechadoras-y-el-draper-convio-flex/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Cosechadora-Claas-Lexion.jpg",
+      "fecha": "2026-03-04T03:10:32+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Cosechadora-Claas-Lexion.jpg",
+      "descripcion": "Realizó en Córdoba un anticipo de la renovación de la familia Lexion y la gama completa de Trion que mostrará en Expoagro.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
       "titulo": "Syra mostrará en Expoagro la ampliación de su línea de incorporadoras",
       "url": "https://maquinac.com/2026/03/syra-mostrara-en-expoagro-la-ampliacion-de-su-linea-de-incorporadoras/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Incorporadora-Syra-Row-8000-02.jpg",
@@ -181,6 +241,18 @@
       "ubicacion": "Lote Aire Libre - 1421A"
     },
     {
+      "titulo": "Plantium prepara un lanzamiento que eleva el estándar de los selectivos",
+      "url": "https://maquinac.com/2026/02/plantium-prepara-un-lanzamiento-que-eleva-el-estandar-de-los-selectivos/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/02/Plantium-ocuWeed-portada.jpg",
+      "fecha": "2026-02-26T03:30:32+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/02/Plantium-ocuWeed-portada.jpg",
+      "descripcion": "Para Expoagro, la empresa anticipa una innovación que promete convertirse en uno de los grandes protagonistas de la muestra.",
+      "fuente": "Maquinac",
+      "categoria": "Agricultura de Precisión",
+      "marca": "PLANTIUM",
+      "ubicacion": "Lote Aire Libre - 940"
+    },
+    {
       "titulo": "Pierobón presentará su primera incorporadora en Expoagro",
       "url": "https://maquinac.com/2026/02/pierobon-presentara-una-incorporadora-en-expoagro/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2026/02/Pierobon-en-Expoagro.jpg",
@@ -191,6 +263,18 @@
       "categoria": "Sembradoras",
       "marca": "PIEROBON",
       "ubicacion": "Lote Aire Libre - 1044"
+    },
+    {
+      "titulo": "AgroActiva presentó en Buenos Aires la edición 2026",
+      "url": "https://maquinac.com/2026/02/agroactiva-presento-en-buenos-aires-la-edicion-2026/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/02/AgroActiva-2026-presentacion-en-Buenos-Aires.jpg",
+      "fecha": "2026-02-26T03:08:29+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2026/02/AgroActiva-2026-presentacion-en-Buenos-Aires.jpg",
+      "descripcion": "La muestra se realizará del 3 al 6 de junio en el predio de Armstrong (Santa Fe) con mayores espacios y más expositores.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
     },
     {
       "titulo": "Montecor presentará nuevas tolvas autodescargables en Expoagro",
@@ -397,6 +481,18 @@
       "ubicacion": "Lote Aire Libre - 610"
     },
     {
+      "titulo": "Claas suma en Argentina los tractores Arion",
+      "url": "https://maquinac.com/2026/02/claas-suma-en-argentina-los-tractores-arion/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/07/Tractor-Claas-Arion-640.jpg",
+      "fecha": "2026-02-01T14:30:51+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/07/Tractor-Claas-Arion-640.jpg",
+      "descripcion": "La marca alemana desembarca en el segmento de tractores de Media Potencia.",
+      "fuente": "Maquinac",
+      "categoria": "Tractores",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
       "titulo": "Massey Ferguson aporta la cosechadora oficial de Expoagro",
       "url": "https://maquinac.com/2026/01/massey-ferguson-aporta-la-cosechadora-oficial-de-expoagro/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2026/01/Cosechadora-Massey-Ferguson.jpg",
@@ -536,9 +632,9 @@
       "imagen": "https://maquinac.com/wp-content/uploads/2022/08/Sembradora-Agrometal-Mx-Max.jpg",
       "descripcion": "Presentará novedades que apuntan a incrementar la eficiencia en siembra y con renovada tecnología.",
       "fuente": "Maquinac",
-      "categoria": "Agricultura de Precisión",
-      "marca": "Agrometal",
-      "ubicacion": "TBD"
+      "categoria": "Sembradoras",
+      "marca": "AGROMETAL",
+      "ubicacion": "Lote Aire Libre - 840"
     },
     {
       "titulo": "TT renovará su propuesta en Expoagro",
@@ -709,6 +805,18 @@
       "ubicacion": "Carpa 1 - C08"
     },
     {
+      "titulo": "AgroActiva lanzó oficialmente la edición 2026",
+      "url": "https://maquinac.com/2025/12/agroactiva-lanzo-oficialmente-la-edicion-2026/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/12/AgroActiva-2026-lanzamiento-oficial.jpg",
+      "fecha": "2025-12-11T03:15:59+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/12/AgroActiva-2026-lanzamiento-oficial.jpg",
+      "descripcion": "La presentación de la feria, que se hará del 3 al 6 de junio en Santa Fe, fue realizada en el Banco Nación.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "BANCO NACION",
+      "ubicacion": "Lote Aire Libre - 660"
+    },
+    {
       "titulo": "Fendt debutará con sus máquinas en Expoagro 2026",
       "url": "https://maquinac.com/2025/12/fendt-debutara-con-sus-maquinas-en-expoagro-2026/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2024/10/Cosechadora-Fendt.jpg",
@@ -721,24 +829,36 @@
       "ubicacion": "Lote Aire Libre - 910"
     },
     {
-      "titulo": "Expoagro 2026 se realizará del 10 al 13 de marzo en San Nicolás",
-      "url": "https://maquinac.com/2025/07/expoagro-2026-se-realizara-del-10-al-13-de-marzo-en-san-nicolas/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/03/Expoagro-predio-en-San-Nicolas-Buenos-Aires.jpg",
-      "fecha": "2025-07-16T14:43:34+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2025/03/Expoagro-predio-en-San-Nicolas-Buenos-Aires.jpg",
-      "descripcion": "La tradicional megamuestra del campo será, una vez más, el epicentro de los negocios en el sector.",
+      "titulo": "Agroactiva ya vendió 90% de su superficie para la edición 2026",
+      "url": "https://maquinac.com/2025/11/agroactiva-ya-vendio-90-de-su-superficie-para-la-edicion-2026/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/11/Pierobon-en-AgroActiva.jpg",
+      "fecha": "2025-11-11T03:25:23+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/11/Pierobon-en-AgroActiva.jpg",
+      "descripcion": "A siete meses de la megamuestra, hay una cifra récord de 205.458 m2 comprometidos por empresas del sector agroindustrial, tecnológico y de servicios.",
       "fuente": "Maquinac",
       "categoria": "Otras",
       "marca": "Otra",
       "ubicacion": "TBD"
     },
     {
-      "titulo": "Arranca Expoagro con una lluvia de nuevas máquinas",
-      "url": "https://maquinac.com/2026/03/arranca-expoagro-con-una-lluvia-de-nuevas-maquinas/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
-      "fecha": "2026-03-10T03:30:29+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Cestari-en-Expoagro.jpg",
-      "descripcion": "Los principales segmentos de equipos para el agro se renuevan, con fuerte participación de empresas nacionales y marcas globales.",
+      "titulo": "AgroActiva 2026 se hará del 3 al 6 de junio",
+      "url": "https://maquinac.com/2025/10/agroactiva-2026-se-hara-del-3-al-6-de-junio/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/10/AgroActiva-2025-stand-de-Claas.jpg",
+      "fecha": "2025-10-22T01:00:50+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/10/AgroActiva-2025-stand-de-Claas.jpg",
+      "descripcion": "Continuará en Armstrong (Santa Fe) y renueva su consigna que ahora es “una muestra de lo que somos”.",
+      "fuente": "Maquinac",
+      "categoria": "Otras",
+      "marca": "Otra",
+      "ubicacion": "TBD"
+    },
+    {
+      "titulo": "Expoagro 2026 se realizará del 10 al 13 de marzo en San Nicolás",
+      "url": "https://maquinac.com/2025/07/expoagro-2026-se-realizara-del-10-al-13-de-marzo-en-san-nicolas/",
+      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/03/Expoagro-predio-en-San-Nicolas-Buenos-Aires.jpg",
+      "fecha": "2025-07-16T14:43:34+00:00",
+      "imagen": "https://maquinac.com/wp-content/uploads/2025/03/Expoagro-predio-en-San-Nicolas-Buenos-Aires.jpg",
+      "descripcion": "La tradicional megamuestra del campo será, una vez más, el epicentro de los negocios en el sector.",
       "fuente": "Maquinac",
       "categoria": "Otras",
       "marca": "Otra",
@@ -757,42 +877,6 @@
       "ubicacion": "TBD"
     },
     {
-      "titulo": "VAF propone en Expoagro el piloto RTK a U$S 7.999",
-      "url": "https://maquinac.com/2026/03/vaf-en-expoagro-piloto-rtk-a-us-7-999/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
-      "fecha": "2026-03-10T03:10:09+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2025/12/Monitor-VAF-Seednut.jpg",
-      "descripcion": "El precio especial está vigente durante la megamuestra. Además, la empresa exhibe soluciones para siembra.",
-      "fuente": "Maquinac",
-      "categoria": "Agricultura de Precisión",
-      "marca": "VAF",
-      "ubicacion": "Espacio AgTech - AG21"
-    },
-    {
-      "titulo": "Kuhn lanza en Expoagro el mixer Profile 20.2 DM",
-      "url": "https://maquinac.com/2026/03/kuhn-lanza-en-expoagro-el-mixer-profile-20-2-dm/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
-      "fecha": "2026-03-10T03:09:24+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2026/03/Mixer-Kuhn-Profile-20.2-DM.jpg",
-      "descripcion": "A través de Luis Ángel Lancioni, su representante oficial en el país, presenta el modelo vertical, de 20.000 litros de capacidad y dos sinfines.",
-      "fuente": "Maquinac",
-      "categoria": "Otras",
-      "marca": "KUHN",
-      "ubicacion": "Lote Aire Libre - 218"
-    },
-    {
-      "titulo": "TBeH presenta sus últimos desarrollos en Expoagro",
-      "url": "https://maquinac.com/2026/03/tbeh-presenta-sus-ultimos-desarrollos-en-expoagro/",
-      "imagethumb": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
-      "fecha": "2026-03-10T03:08:17+00:00",
-      "imagen": "https://maquinac.com/wp-content/uploads/2024/02/TBeH-en-Expoagro-2023.jpg",
-      "descripcion": "Redobla la apuesta en fabricación nacional con el manipulador MT 37 y avanza en la preparación de un nuevo modelo",
-      "fuente": "Maquinac",
-      "categoria": "Otras",
-      "marca": "TBEH",
-      "ubicacion": "Lote Aire Libre - 810"
-    },
-    {
       "titulo": "Todos los ganadores del Premio Ternium Expoagro 2026",
       "url": "https://maquinac.com/2025/12/todos-los-ganadores-de-la-10-edicion-de-los-premios-ternium/",
       "imagethumb": "https://maquinac.com/wp-content/uploads/2018/12/Premio-Ternium-Expoagro.jpg",
@@ -805,5 +889,5 @@
       "ubicacion": "Lote Aire Libre - 570"
     }
   ],
-  "lastUpdated": "2026-03-10T09:42:45.408Z"
+  "lastUpdated": "2026-03-15T23:34:22.770Z"
 }
