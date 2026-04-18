@@ -44,7 +44,8 @@ async function runAutomation() {
                     fuente: noticia.fuente,
                     categoria: noticia.categoria,
                     marca: noticia.marca,
-                    ubicacion: noticia.ubicacion
+                    ubicacion: noticia.ubicacion,
+                    evento: noticia.evento
                 }, { onConflict: 'url' });
 
             if (error) {

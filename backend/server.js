@@ -104,14 +104,21 @@ async function saveCache(nuevasNoticias) {
  */
 app.get('/api/noticias', async (req, res) => {
     let noticias = [];
+    const feria = req.query.feria; // Expoagro o Agroactiva
 
     // En Vercel (serverless), es mejor consultar directo a Supabase
     try {
         if (process.env.SUPABASE_URL) {
-            const { data, error } = await supabase
+            let query = supabase
                 .from('noticias')
                 .select('*')
                 .order('created_at', { ascending: false });
+            
+            if (feria && feria !== 'Todas') {
+                query = query.eq('evento', feria);
+            }
+
+            const { data, error } = await query;
 
             if (!error && data) {
                 noticias = data;
@@ -126,19 +133,25 @@ app.get('/api/noticias', async (req, res) => {
         noticias = [...cache.noticias];
     }
 
+    // Filtro manual de cache si Supabase falló o no está configurado
+    if (!process.env.SUPABASE_URL && feria && feria !== 'Todas') {
+        noticias = noticias.filter(n => n.evento === feria);
+    }
+
     // Filtro de búsqueda
     const buscar = req.query.buscar?.toLowerCase();
     if (buscar) {
         noticias = noticias.filter(
             (n) =>
                 n.titulo?.toLowerCase().includes(buscar) ||
-                n.descripcion?.toLowerCase().includes(buscar)
+                n.descripcion?.toLowerCase().includes(buscar) ||
+                n.marca?.toLowerCase().includes(buscar)
         );
     }
 
     // Paginación y Orden
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 1000; // Aumentado para el mapa
+    const limit = parseInt(req.query.limit) || 1000;
     const orden = req.query.orden || 'desc';
 
     noticias.sort((a, b) => {
@@ -162,6 +175,7 @@ app.get('/api/noticias', async (req, res) => {
         noticias: paginated,
     });
 });
+
 
 /**
  * PATCH /api/noticias/:id
@@ -272,11 +286,21 @@ app.get('/api/status', (req, res) => {
         totalNoticias: cache.noticias.length,
         lastUpdated: cache.lastUpdated,
         isUpdating: cache.isUpdating,
-        evento: 'ExpoAgro 2026',
-        fecha: '10-13 de Marzo de 2026',
-        lugar: 'San Nicolás, Buenos Aires, Argentina',
+        eventos: [
+            {
+                nombre: 'ExpoAgro 2026',
+                fecha: '10-13 de Marzo de 2026',
+                lugar: 'San Nicolás, Buenos Aires'
+            },
+            {
+                nombre: 'Agroactiva 2026',
+                fecha: '3-6 de Junio de 2026',
+                lugar: 'Armstrong, Santa Fe'
+            }
+        ]
     });
 });
+
 
 /**
  * POST /api/refresh

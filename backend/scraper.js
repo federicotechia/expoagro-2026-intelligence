@@ -3,14 +3,14 @@ const { chromium } = require('playwright');
 const BASE_URLS = [
   'https://maquinac.com/seccion/exposiciones/',
   'https://maquinac.com/?s=expoagro', // Buscar en todo el sitio
+  'https://maquinac.com/?s=agroactiva', // Buscar en todo el sitio
+  'https://agroactiva.com/prensa_notas', // Sitio oficial Agroactiva
   'https://maquinac.com/' // Pagina principal para agarrar las de "último momento"
 ];
 
-// Palabras clave para identificar noticias de ExpoAgro 2026
-const KEYWORDS_EXPOAGRO = [
-  'expoagro',
-  'expo agro',
-];
+// Palabras clave para identificar noticias
+const KEYWORDS_EXPOAGRO = ['expoagro', 'expo agro'];
+const KEYWORDS_AGROACTIVA = ['agroactiva', 'agro activa'];
 
 const EXCLUSIONES_ANIOS = ['2025', '2024', '2023', '2022', '2021', '2020'];
 
@@ -141,16 +141,14 @@ function getCategoriaYMarca(titulo, descripcion) {
   return { categoria, marca, ubicacion };
 }
 
-// Filtrar noticias que sean de ExpoAgro 2026
-function isExpoAgro2026(article) {
+function identifyEvento(article) {
   const titleLower = article.titulo.toLowerCase();
   const urlLower = article.url.toLowerCase();
 
-  const hasKeyword = KEYWORDS_EXPOAGRO.some(
-    (kw) => titleLower.includes(kw) || urlLower.includes(kw)
-  );
+  const isExpo = KEYWORDS_EXPOAGRO.some(kw => titleLower.includes(kw) || urlLower.includes(kw));
+  const isAgro = KEYWORDS_AGROACTIVA.some(kw => titleLower.includes(kw) || urlLower.includes(kw));
 
-  if (!hasKeyword) return false;
+  if (!isExpo && !isAgro) return null;
 
   // Si dice 2026 explícitamente, es muy probable que sea correcta
   const mention2026 = titleLower.includes('2026') || urlLower.includes('2026');
@@ -159,12 +157,13 @@ function isExpoAgro2026(article) {
   const mentionOldYear = EXCLUSIONES_ANIOS.some(yr => titleLower.includes(yr) || urlLower.includes(yr));
 
   if (mentionOldYear && !mention2026) {
-    return false;
+    return null;
   }
 
-  // Si no menciona ningún año pero tiene la keyword, la dejamos pasar (puede ser una noticia actual sin año en el título)
-  return true;
+  return isAgro ? 'Agroactiva' : 'Expoagro';
 }
+
+
 
 async function scrapeArticleDetail(page, url) {
   try {
@@ -280,7 +279,7 @@ async function scrapeListPage(page, url) {
 }
 
 async function scrapeAllNews(maxPages = 3) {
-  console.log('🚀 Iniciando scraper de ExpoAgro 2026...');
+  console.log('🚀 Iniciando scraper de Novedades (Expoagro & Agroactiva)...');
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     userAgent:
@@ -302,28 +301,28 @@ async function scrapeAllNews(maxPages = 3) {
       // Recorrer páginas de la sección
       while (currentUrl && pageNum <= maxPages) {
         console.log(`📄 Scrapeando página ${pageNum}: ${currentUrl}`);
-        const { articles, nextPageUrl } = await scrapeListPage(
-          listPage,
-          currentUrl
-        );
+        const result = await scrapeListPage(listPage, currentUrl);
+        const { articles, nextPageUrl } = result;
 
         console.log(`   Encontrados ${articles.length} artículos`);
 
-        // Filtrar solo ExpoAgro 2026 antes de visitar detalles
-        const filtered = articles.filter(isExpoAgro2026);
-        console.log(
-          `   ✅ ${filtered.length} corresponden a ExpoAgro 2026`
-        );
+        // Identificar evento para cada artículo
+        const identified = articles.map(art => ({
+          ...art,
+          evento: identifyEvento(art)
+        })).filter(art => art.evento !== null);
+
+        console.log(`   ✅ ${identified.length} corresponden a ferias relevantes (2026)`);
 
         // Obtener detalles de cada artículo filtrado
-        for (const art of filtered) {
+        for (const art of identified) {
           // Evitar duplicados en memoria durante el mismo ciclo
           if (allArticles.some(a => a.url === art.url)) {
             console.log(`   ⏭️ Ya procesado: ${art.titulo}`);
             continue;
           }
 
-          console.log(`   🔍 Detalle: ${art.titulo}`);
+          console.log(`   🔍 Detalle [${art.evento}]: ${art.titulo}`);
           const detail = await scrapeArticleDetail(detailPage, art.url);
 
           let { categoria, marca, ubicacion } = getCategoriaYMarca(art.titulo, detail.descripcion);
@@ -331,10 +330,10 @@ async function scrapeAllNews(maxPages = 3) {
           allArticles.push({
             ...art,
             ...detail,
-            fuente: 'Maquinac',
+            fuente: art.url.includes('agroactiva.com') ? 'Agroactiva Oficial' : 'Maquinac',
             categoria,
             marca,
-            ubicacion
+            ubicacion: art.evento === 'Agroactiva' ? 'TBD' : ubicacion // No mapeamos ubicaciones de Agroactiva aún
           });
 
           // Pausa cortés entre requests
@@ -353,8 +352,9 @@ async function scrapeAllNews(maxPages = 3) {
     await browser.close();
   }
 
-  console.log(`\n✅ Scraping completo: ${allArticles.length} noticias de ExpoAgro 2026`);
+  console.log(`\n✅ Scraping completo: ${allArticles.length} noticias totales.`);
   return allArticles;
 }
+
 
 module.exports = { scrapeAllNews };

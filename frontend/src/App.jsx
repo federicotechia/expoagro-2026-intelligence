@@ -13,9 +13,11 @@ export default function App() {
   // States para filtros
   const [filtroMarca, setFiltroMarca] = useState('Todas');
   const [filtroCategoria, setFiltroCategoria] = useState('Todas');
+  const [filtroFeria, setFiltroFeria] = useState('Expoagro'); // 'Expoagro' | 'Agroactiva' | 'Todas'
   const [isScraping, setIsScraping] = useState(false);
   const [currentTab, setCurrentTab] = useState('noticias'); // 'noticias' | 'mapa'
   const [isMapFullscreen, setIsMapFullscreen] = useState(false);
+
 
   // Escuchar mensajes del iframe para pantalla completa (especialmente para iOS)
   useEffect(() => {
@@ -43,9 +45,10 @@ export default function App() {
   const fetchNews = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/noticias?limit=1000&orden=${orden}`);
+      const res = await fetch(`${API_BASE}/noticias?limit=1000&orden=${orden}&feria=${filtroFeria}`);
       if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       const data = await res.json();
+
 
       setNoticias(data.noticias || []);
       setIsScraping(!!data.isUpdating);
@@ -58,7 +61,8 @@ export default function App() {
 
   useEffect(() => {
     fetchNews();
-  }, [orden]);
+  }, [orden, filtroFeria]);
+
 
   const handleRefresh = async () => {
     try {
@@ -137,7 +141,8 @@ export default function App() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "Marketing_Intelligence_ExpoAgro_2026.csv");
+    link.setAttribute("download", `Marketing_Intelligence_${filtroFeria}_2026.csv`);
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -197,8 +202,9 @@ export default function App() {
             <div className="brand-icon">CX</div>
             <div className="brand-text">
               <h1>Crucianelli</h1>
-              <span>ExpoAgro Intelligence</span>
+              <span>{filtroFeria === 'Todas' ? 'Agro Intelligence' : `${filtroFeria} Intelligence 2026`}</span>
             </div>
+
           </div>
           <div className="header-actions">
             <button className="btn-add-novedad" onClick={() => setShowManualModal(true)}>
@@ -216,10 +222,13 @@ export default function App() {
         <button className={`tab-btn ${currentTab === 'noticias' ? 'active' : ''}`} onClick={() => setCurrentTab('noticias')}>
           📰 Noticias & Reportes
         </button>
-        <button className={`tab-btn ${currentTab === 'mapa' ? 'active' : ''}`} onClick={() => setCurrentTab('mapa')}>
-          🗺️ Mapa de Expositores
-        </button>
+        {filtroFeria === 'Expoagro' && (
+          <button className={`tab-btn ${currentTab === 'mapa' ? 'active' : ''}`} onClick={() => setCurrentTab('mapa')}>
+            🗺️ Mapa de Expositores
+          </button>
+        )}
       </div>
+
 
       <section className="hero">
         <h2>Marketing <span>Intelligence</span></h2>
@@ -235,6 +244,15 @@ export default function App() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
 
+          <select className="search-input" value={filtroFeria} onChange={e => {
+            setFiltroFeria(e.target.value);
+            if (e.target.value === 'Agroactiva') setCurrentTab('noticias');
+          }} style={{ width: 'auto', borderColor: 'var(--crucianelli-red)', fontWeight: 'bold' }}>
+            <option value="Expoagro">Expoagro 2026</option>
+            <option value="Agroactiva">Agroactiva 2026</option>
+            <option value="Todas">Ambas Ferias</option>
+          </select>
+
           <select className="search-input" value={filtroCategoria} onChange={e => setFiltroCategoria(e.target.value)} style={{ width: 'auto' }}>
             {categoriasDisponibles.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -242,6 +260,7 @@ export default function App() {
           <select className="search-input" value={filtroMarca} onChange={e => setFiltroMarca(e.target.value)} style={{ width: 'auto' }}>
             {marcasDisponibles.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
+
 
           <select className="search-input" value={orden} onChange={e => setOrden(e.target.value)} style={{ width: 'auto' }}>
             <option value="desc">Más Recientes</option>
