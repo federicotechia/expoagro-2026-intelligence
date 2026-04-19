@@ -312,7 +312,7 @@ async function scrapeAllNews(maxPages = 3) {
           evento: identifyEvento(art)
         })).filter(art => art.evento !== null);
 
-        console.log(`   ✅ ${identified.length} corresponden a ferias relevantes (2026)`);
+        console.log(`   ✅ ${identified.length} corresponden a ferias relevantes`);
 
         // Obtener detalles de cada artículo filtrado
         for (const art of identified) {

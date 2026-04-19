@@ -24,3 +24,6 @@ backend/dist/
 # System files
 .DS_Store
 Thumbs.db
+
+# Antigravity/Brain files
+brain/

@@ -141,7 +141,7 @@ export default function App() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `Marketing_Intelligence_${filtroFeria}_2026.csv`);
+    link.setAttribute("download", `Marketing_Intelligence_${filtroFeria}.csv`);
 
     document.body.appendChild(link);
     link.click();
@@ -153,7 +153,7 @@ export default function App() {
       <div className="loading-wrapper">
         <div className="spinner"></div>
         <h2>Sincronizando Sistemas...</h2>
-        <p style={{ color: 'var(--text-muted)' }}>Conectando con ExpoAgro 2026</p>
+        <p style={{ color: 'var(--text-muted)' }}>Conectando con Exposiciones</p>
       </div>
     );
   }
@@ -202,7 +202,7 @@ export default function App() {
             <div className="brand-icon">CX</div>
             <div className="brand-text">
               <h1>Crucianelli</h1>
-              <span>{filtroFeria === 'Todas' ? 'Agro Intelligence' : `${filtroFeria} Intelligence 2026`}</span>
+              <span>{filtroFeria === 'Todas' ? 'Agro Intelligence' : `${filtroFeria} Intelligence`}</span>
             </div>
 
           </div>
@@ -232,7 +232,7 @@ export default function App() {
 
       <section className="hero">
         <h2>Marketing <span>Intelligence</span></h2>
-        <p>Herramienta diseñada para el equipo de Marketing de Producto en ExpoAgro 2026.</p>
+        <p>Herramienta diseñada para el equipo de Marketing de Producto en Exposiciones.</p>
 
         <div className="search-container" style={{ flexWrap: 'wrap', gap: '15px' }}>
           <input
@@ -248,8 +248,8 @@ export default function App() {
             setFiltroFeria(e.target.value);
             if (e.target.value === 'Agroactiva') setCurrentTab('noticias');
           }} style={{ width: 'auto', borderColor: 'var(--crucianelli-red)', fontWeight: 'bold' }}>
-            <option value="Expoagro">Expoagro 2026</option>
-            <option value="Agroactiva">Agroactiva 2026</option>
+            <option value="Expoagro">Expoagro</option>
+            <option value="Agroactiva">Agroactiva</option>
             <option value="Todas">Ambas Ferias</option>
           </select>
 
@@ -413,7 +413,7 @@ export default function App() {
               <iframe
                 id="map-iframe"
                 src={`${API_BASE}/mapa?t=${Date.now()}`}
-                title="Plano ExpoAgro 2026"
+                title="Plano de Exposición"
                 width="100%"
                 height="800px"
                 style={{ border: 'none', borderRadius: '8px' }}

@@ -288,13 +288,13 @@ app.get('/api/status', (req, res) => {
         isUpdating: cache.isUpdating,
         eventos: [
             {
-                nombre: 'ExpoAgro 2026',
-                fecha: '10-13 de Marzo de 2026',
+                nombre: 'ExpoAgro',
+                fecha: 'Marzo',
                 lugar: 'San Nicolás, Buenos Aires'
             },
             {
-                nombre: 'Agroactiva 2026',
-                fecha: '3-6 de Junio de 2026',
+                nombre: 'Agroactiva',
+                fecha: 'Junio',
                 lugar: 'Armstrong, Santa Fe'
             }
         ]
@@ -348,7 +348,7 @@ app.get('/api/mapa', (req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mapa Interactivo ExpoAgro 2026</title>
+    <title>Mapa Interactivo de Exposiciones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -437,7 +437,7 @@ app.get('/api/mapa', (req, res) => {
     </button>
     <div id="map"></div>
     <div class="info-panel">
-        <b style="color: #ea0b17">EXPOAGRO 2026 - NOVEDADES</b><br>
+        <b style="color: #ea0b17">EXPOSICIÓN - NOVEDADES</b><br>
         • Use gestos para zoom<br>
         • Toque un punto para ver detalles
     </div>
@@ -628,7 +628,7 @@ app.get('/api/ubicaciones', (req, res) => {
 });
 
 app.get('/api/mapa-image', (req, res) => {
-    const imgPath = path.join(__dirname, 'mapa_expoagro.jpg');
+    const imgPath = path.join(__dirname, 'mapa_exposicion.jpg');
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
     } else {
@@ -649,7 +649,7 @@ loadCache();
 
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
-        console.log(`\n🌾 ExpoAgro 2026 News API corriendo en http://localhost:${PORT}`);
+        console.log(`\n🌾 Exposiciones News API corriendo en http://localhost:${PORT}`);
         console.log(`   GET  /api/noticias  → lista de noticias`);
         console.log(`   GET  /api/status   → estado del cache`);
         console.log(`   POST /api/refresh  → scrapear ahora\n`);
