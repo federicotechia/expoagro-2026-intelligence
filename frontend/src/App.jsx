@@ -202,7 +202,7 @@ export default function App() {
             <div className="brand-icon">CX</div>
             <div className="brand-text">
               <h1>Crucianelli</h1>
-              <span>{filtroFeria === 'Todas' ? 'Agro Intelligence' : `${filtroFeria} Intelligence`}</span>
+              <span>Exposiciones Intelligence</span>
             </div>
 
           </div>
