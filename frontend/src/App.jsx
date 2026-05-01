@@ -184,6 +184,9 @@ export default function App() {
 
   const getSector = (ub) => {
     if (!ub || ub === 'TBD') return 'Otros / Por Confirmar';
+    if (filtroFeria === 'Agroactiva') {
+      return 'Sector General Agroactiva'; // Simplificado por ahora
+    }
     const numMatch = ub.match(/(\d+)/);
     if (!numMatch) return 'Espacios Especiales / Carpas';
     const n = parseInt(numMatch[1]);
@@ -222,7 +225,7 @@ export default function App() {
         <button className={`tab-btn ${currentTab === 'noticias' ? 'active' : ''}`} onClick={() => setCurrentTab('noticias')}>
           📰 Noticias & Reportes
         </button>
-        {filtroFeria === 'Expoagro' && (
+        {(filtroFeria === 'Expoagro' || filtroFeria === 'Agroactiva') && (
           <button className={`tab-btn ${currentTab === 'mapa' ? 'active' : ''}`} onClick={() => setCurrentTab('mapa')}>
             🗺️ Mapa de Expositores
           </button>
@@ -378,7 +381,10 @@ export default function App() {
             <div className="map-sidebar">
               <h4>🎯 Stands con Novedades</h4>
               <div className="map-stands-list">
-                {['Sector Oeste (Ingreso y 100-300)', 'Sector Centro-Oeste (400-600)', 'Sector Centro-Este (700-900)', 'Sector Este (1000-1500)', 'Espacios Especiales / Carpas']
+                {(filtroFeria === 'Agroactiva' 
+                  ? ['Sector General Agroactiva', 'Otros / Por Confirmar']
+                  : ['Sector Oeste (Ingreso y 100-300)', 'Sector Centro-Oeste (400-600)', 'Sector Centro-Este (700-900)', 'Sector Este (1000-1500)', 'Espacios Especiales / Carpas', 'Otros / Por Confirmar']
+                )
                   .map(sec => {
                     const standsEnSector = [...new Set(filteredNoticias.filter(n => n.marca && n.marca !== 'Otra' && getSector(n.ubicacion) === sec).map(n => JSON.stringify({ marca: n.marca, ubicacion: n.ubicacion })))]
                       .map(s => JSON.parse(s))
@@ -412,7 +418,7 @@ export default function App() {
             <div className={`map-embed ${isMapFullscreen ? 'fullscreen-mode' : ''}`}>
               <iframe
                 id="map-iframe"
-                src={`${API_BASE}/mapa?t=${Date.now()}`}
+                src={`${API_BASE}/mapa?feria=${filtroFeria}&t=${Date.now()}`}
                 title="Plano de Exposición"
                 width="100%"
                 height="800px"

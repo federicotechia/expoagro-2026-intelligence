@@ -344,11 +344,21 @@ app.post('/api/refresh', async (req, res) => {
  * Sirve una página HTML interactiva con el plano de la expo.
  */
 app.get('/api/mapa', (req, res) => {
+    const feria = req.query.feria || 'Expoagro';
+    
+    // Dimensiones según la feria
+    const dims = {
+        'Expoagro': { W: 7415, H: 5241 },
+        'Agroactiva': { W: 3401, H: 3836 }
+    };
+    
+    const { W, H } = dims[feria] || dims['Expoagro'];
+
     res.send(`
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mapa Interactivo de Exposiciones</title>
+    <title>Mapa Interactivo de ${feria}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -437,7 +447,7 @@ app.get('/api/mapa', (req, res) => {
     </button>
     <div id="map"></div>
     <div class="info-panel">
-        <b style="color: #ea0b17">EXPOSICIÓN - NOVEDADES</b><br>
+        <b style="color: #ea0b17">${feria.toUpperCase()} - NOVEDADES</b><br>
         • Use gestos para zoom<br>
         • Toque un punto para ver detalles
     </div>
@@ -461,8 +471,9 @@ app.get('/api/mapa', (req, res) => {
                 setTimeout(() => { if (window.map) window.map.invalidateSize(); }, 300);
             }
 
-            const W = 7415;
-            const H = 5241;
+            const W = ${W};
+            const H = ${H};
+            const FERIA = "${feria}";
 
             const map = L.map('map', {
                 crs: L.CRS.Simple,
@@ -472,88 +483,99 @@ app.get('/api/mapa', (req, res) => {
             window.map = map; // Hacerlo accesible
 
         const bounds = [[0, 0], [H, W]];
-        L.imageOverlay('/api/mapa-image', bounds).addTo(map);
+        L.imageOverlay('/api/mapa-image?feria=' + FERIA, bounds).addTo(map);
         map.fitBounds(bounds, { padding: [10, 10], maxZoom: -1 }); // Asegurar que entre completo
 
-        // --- RESALTAR CRUCIANELLI (STAND 520) ---
-        const cX = 0.2847;
-        const cY = 0.5528;
-        const cLat = (1 - cY) * H;
-        const cLng = cX * W;
+        // --- RESALTAR CRUCIANELLI ---
+        // Coordenadas aproximadas para Agroactiva si no se encuentran
+        let cX = (FERIA === 'Agroactiva') ? 0.6389 : 0.2847;
+        let cY = (FERIA === 'Agroactiva') ? 0.7042 : 0.5528;
+        let cStand = (FERIA === 'Agroactiva') ? "Lote 228" : "Stand 520";
 
-        const crucianelliIcon = L.divIcon({
-            className: 'crucianelli-label-wrapper',
-            html: '<div class="crucianelli-label">CRUCIANELLI 520</div>',
-            iconSize: [0, 0],
-            iconAnchor: [60, 10]
-        });
+        const setCrucianelli = (x, y) => {
+            const cLat = (1 - y) * H;
+            const cLng = x * W;
 
-        // Punto de referencia pulsante
-        L.circleMarker([cLat, cLng], {
-            radius: 12,
-            fillColor: "#ea0b17",
-            color: "#fff",
-            weight: 3,
-            opacity: 1,
-            fillOpacity: 1
-        }).addTo(map).bindPopup('<b style="color:#ea0b17; font-size:16px;">CRUCIANELLI</b><br>Stand 520 - Punto de Referencia');
+            const crucianelliIcon = L.divIcon({
+                className: 'crucianelli-label-wrapper',
+                html: '<div class="crucianelli-label">CRUCIANELLI ' + cStand + '</div>',
+                iconSize: [0, 0],
+                iconAnchor: [60, 10]
+            });
 
-        L.marker([cLat, cLng], { icon: crucianelliIcon, interactive: false }).addTo(map);
+            L.circleMarker([cLat, cLng], {
+                radius: 12,
+                fillColor: "#ea0b17",
+                color: "#fff",
+                weight: 3,
+                opacity: 1,
+                fillOpacity: 1
+            }).addTo(map).bindPopup('<b style="color:#ea0b17; font-size:16px;">CRUCIANELLI</b><br>' + cStand + ' - Punto de Referencia');
+
+            L.marker([cLat, cLng], { icon: crucianelliIcon, interactive: false }).addTo(map);
+        };
+
         // ----------------------------------------
 
         Promise.all([
-            fetch('/api/noticias?limit=1000').then(r => r.json()),
-            fetch('/api/map-coords').then(r => r.json()),
+            fetch('/api/noticias?limit=1000&feria=' + FERIA).then(r => r.json()),
+            fetch('/api/map-coords?feria=' + FERIA).then(r => r.json()),
             fetch('/api/ubicaciones').then(r => r.json())
         ]).then(([noticiasRes, coords, dict]) => {
             const noticias = noticiasRes.noticias || [];
             
+            // Si estamos en Agroactiva, Crucianelli ya debería estar en coords
+            if (FERIA === 'Agroactiva' && coords['CRUCIANELLI']) {
+                cX = coords['CRUCIANELLI'].x;
+                cY = coords['CRUCIANELLI'].y;
+            }
+            setCrucianelli(cX, cY);
+
             const findUbicacion = (marca) => {
                 if (!marca) return null;
                 const m = marca.toUpperCase();
-                if (dict[m]) return dict[m].ubicacion;
-                const key = Object.keys(dict).find(k => (k.length > 3 && m.includes(k)) || (m.length > 3 && k.includes(m)));
-                return key ? dict[key].ubicacion : null;
-            };
-
-            noticias.forEach(n => {
-                if (!n.ubicacion || n.ubicacion === 'TBD') {
-                    const u = findUbicacion(n.marca);
-                    if (u) n.ubicacion = u;
+                
+                // Caso Agroactiva: coords tiene marcas directamente
+                if (FERIA === 'Agroactiva') {
+                    if (coords[m]) return { x: coords[m].x, y: coords[m].y, label: m };
+                    const key = Object.keys(coords).find(k => (k.length > 4 && m.includes(k)) || (m.length > 4 && k.includes(m)));
+                    return key ? { x: coords[key].x, y: coords[key].y, label: key } : null;
                 }
-            });
+
+                // Caso Expoagro: usa diccionario de ubicaciones -> lotes -> coords
+                if (dict[m]) return { stand: dict[m].ubicacion };
+                const key = Object.keys(dict).find(k => (k.length > 3 && m.includes(k)) || (m.length > 3 && k.includes(m)));
+                return key ? { stand: dict[key].ubicacion } : null;
+            };
 
             const markers = {};
 
             noticias.forEach(n => {
-                let standId = null;
+                let pos = null;
+                let label = n.marca;
                 
-                // 1. Forzado manual para casos problemáticos de nombres
+                // 1. Normalización de marcas para mejorar coincidencia
                 let marcaNormalizada = n.marca ? n.marca.toUpperCase() : '';
                 if (marcaNormalizada.includes('IFN') || marcaNormalizada.includes('IFC')) marcaNormalizada = 'IFC TECNO';
                 if (marcaNormalizada.includes('INGERSOLL')) marcaNormalizada = 'INGERSOLL ARGENTINA';
                 if (marcaNormalizada.includes('DEERE')) marcaNormalizada = 'JOHN DEERE';
-                if (marcaNormalizada.includes('EURO TORQUE') || marcaNormalizada.includes('FPT')) marcaNormalizada = 'FPT';
-                if (marcaNormalizada.includes('PT FARM') || marcaNormalizada.includes('GRUPO GR')) marcaNormalizada = 'PT FARM';
 
-                // 2. Intentar obtener el lote de la noticia o del diccionario
-                let ubicacion = n.ubicacion;
-                if (!ubicacion || ubicacion === 'TBD') {
-                    ubicacion = findUbicacion(marcaNormalizada);
+                // 2. Intentar obtener posición
+                const uinfo = findUbicacion(marcaNormalizada);
+                
+                if (FERIA === 'Agroactiva' && uinfo && uinfo.x) {
+                    pos = { x: uinfo.x, y: uinfo.y };
+                } else if (uinfo && uinfo.stand) {
+                    const match = uinfo.stand.match(/([A-Z]*\\d+[A-Z]*)/);
+                    const standId = match ? match[1] : null;
+                    if (standId && coords[standId]) {
+                        pos = coords[standId];
+                    }
                 }
 
-                if (ubicacion && ubicacion !== 'TBD') {
-                    const match = ubicacion.match(/([A-Z]*\\d+[A-Z]*)/);
-                    standId = match ? match[1] : null;
-                }
-
-                // 3. Casos específicos forzados por lote si el nombre coincide
-                if (marcaNormalizada === 'IFC TECNO') standId = '514';
-                if (marcaNormalizada === 'INGERSOLL ARGENTINA') standId = 'C08';
-
-                if (standId && coords[standId]) {
-                    const lat = (1 - coords[standId].y) * H;
-                    const lng = coords[standId].x * W;
+                if (pos) {
+                    const lat = (1 - pos.y) * H;
+                    const lng = pos.x * W;
 
                     const marker = L.circleMarker([lat, lng], {
                         radius: 8,
@@ -567,7 +589,7 @@ app.get('/api/mapa', (req, res) => {
                     const popupContent = \`
                         <div style="color: black; font-family: sans-serif; min-width: 180px;">
                             <b style="color: #ea0b17; font-size: 15px;">\${n.marca}</b><br>
-                            <b style="color: #666;">Stand: \${ubicacion || n.ubicacion}</b><hr style="border: 0.5px solid #eee;">
+                            <b style="color: #666;">Ubicación: \${n.ubicacion || 'Detectada'}</b><hr style="border: 0.5px solid #eee;">
                             <p style="margin: 8px 0; font-size: 12px; line-height: 1.4;">\${n.titulo}</p>
                             <a href="\${n.url}" target="_blank" style="display: block; text-align: center; padding: 6px; background: #ea0b17; color: white; text-decoration: none; border-radius: 4px; font-size: 11px;">VER DETALLES</a>
                         </div>
@@ -575,12 +597,10 @@ app.get('/api/mapa', (req, res) => {
                     
                     marker.bindPopup(popupContent);
                     markers[n.marca] = marker;
-                    
-                    const cleanUbic = ubicacion && ubicacion.includes('-') ? ubicacion.split('-').pop().trim() : (standId || '');
 
                     const labelIcon = L.divIcon({
                         className: 'marker-label-container',
-                        html: \`<div class="marker-label">\${n.marca}<br><span style="font-size: 9px; font-weight: normal; opacity: 0.9;">\${cleanUbic}</span></div>\`,
+                        html: \`<div class="marker-label">\${n.marca}</div>\`,
                         iconSize: [0, 0],
                         iconAnchor: [0, 0]
                     });
@@ -594,7 +614,7 @@ app.get('/api/mapa', (req, res) => {
             window.focusStand = (marca) => {
                 const marker = markers[marca];
                 if (marker) {
-                    map.setView(marker.getLatLng(), 1); // Zoom 1 es zoomed-in en CRS.Simple con minZoom -3
+                    map.setView(marker.getLatLng(), 1); 
                     marker.openPopup();
                 }
             };
@@ -628,7 +648,11 @@ app.get('/api/ubicaciones', (req, res) => {
 });
 
 app.get('/api/mapa-image', (req, res) => {
-    const imgPath = path.join(__dirname, 'mapa_exposicion.jpg');
+    const feria = req.query.feria;
+    let imgName = 'mapa_exposicion.jpg';
+    if (feria === 'Agroactiva') imgName = 'mapa_agroactiva.jpg';
+
+    const imgPath = path.join(__dirname, imgName);
     if (fs.existsSync(imgPath)) {
         res.sendFile(imgPath);
     } else {
@@ -637,7 +661,11 @@ app.get('/api/mapa-image', (req, res) => {
 });
 
 app.get('/api/map-coords', (req, res) => {
-    const coordsPath = path.join(__dirname, 'map_coords.json');
+    const feria = req.query.feria;
+    let fileName = 'map_coords.json';
+    if (feria === 'Agroactiva') fileName = 'agroactiva_coords.json';
+
+    const coordsPath = path.join(__dirname, fileName);
     if (fs.existsSync(coordsPath)) {
         res.sendFile(coordsPath);
     } else {

@@ -38,8 +38,17 @@ try {
   if (fs.existsSync(jsonPath)) {
     ubicacionesExpo = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
   }
+  
+  // Cargar mapeo Agroactiva
+  const agroPath = path.join(__dirname, 'agroactiva_brands_to_lots.json');
+  if (fs.existsSync(agroPath)) {
+    global.ubicacionesAgro = JSON.parse(fs.readFileSync(agroPath, 'utf8'));
+  } else {
+    global.ubicacionesAgro = {};
+  }
 } catch (err) {
-  console.log('No se pudo cargar ubicaciones.json');
+  console.log('No se pudo cargar archivos de ubicaciones');
+  global.ubicacionesAgro = {};
 }
 
 const CATEGORIA_MAP = {
@@ -65,7 +74,7 @@ function normalizeText(text) {
     .trim();
 }
 
-function getCategoriaYMarca(titulo, descripcion) {
+function getCategoriaYMarca(titulo, descripcion, evento) {
   const titleNorm = normalizeText(titulo);
   const descNorm = normalizeText(descripcion);
   const fullNorm = titleNorm + ' ' + descNorm;
@@ -75,7 +84,9 @@ function getCategoriaYMarca(titulo, descripcion) {
   let rawRubros = '';
 
   // 1. Cargamos marcas ordenadas por largo (para no matchear partes de nombres)
-  const sortedBrands = Object.keys(ubicacionesExpo).sort((a, b) => b.length - a.length);
+  const agroBrands = global.ubicacionesAgro ? Object.keys(global.ubicacionesAgro) : [];
+  const allBrands = [...new Set([...Object.keys(ubicacionesExpo), ...agroBrands, ...MARCAS_CONOCIDAS])];
+  const sortedBrands = allBrands.sort((a, b) => b.length - a.length);
 
   const hasBrand = (textNormalized, brandCore) => {
     // La marca base ya viene limpia del JSON (en mayusculas y sin acentos)
@@ -91,8 +102,12 @@ function getCategoriaYMarca(titulo, descripcion) {
   for (let b of sortedBrands) {
     if (hasBrand(titleNorm, b)) {
       marca = b;
-      ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
-      rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+      if (evento === 'Agroactiva') {
+        ubicacion = global.ubicacionesAgro[b.toUpperCase()] || 'Detectado';
+      } else if (ubicacionesExpo[b]) {
+        ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
+        rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+      }
       break;
     }
   }
@@ -102,8 +117,12 @@ function getCategoriaYMarca(titulo, descripcion) {
     for (let b of sortedBrands) {
       if (hasBrand(descNorm, b)) {
         marca = b;
-        ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
-        rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+        if (evento === 'Agroactiva') {
+          ubicacion = global.ubicacionesAgro[b.toUpperCase()] || 'Detectado';
+        } else if (ubicacionesExpo[b]) {
+          ubicacion = ubicacionesExpo[b].ubicacion || 'TBD';
+          rawRubros = (ubicacionesExpo[b].rubros || '').toLowerCase();
+        }
         break;
       }
     }
@@ -325,7 +344,7 @@ async function scrapeAllNews(maxPages = 3) {
           console.log(`   🔍 Detalle [${art.evento}]: ${art.titulo}`);
           const detail = await scrapeArticleDetail(detailPage, art.url);
 
-          let { categoria, marca, ubicacion } = getCategoriaYMarca(art.titulo, detail.descripcion);
+          let { categoria, marca, ubicacion } = getCategoriaYMarca(art.titulo, detail.descripcion, art.evento);
 
           allArticles.push({
             ...art,
@@ -333,7 +352,7 @@ async function scrapeAllNews(maxPages = 3) {
             fuente: art.url.includes('agroactiva.com') ? 'Agroactiva Oficial' : 'Maquinac',
             categoria,
             marca,
-            ubicacion: art.evento === 'Agroactiva' ? 'TBD' : ubicacion // No mapeamos ubicaciones de Agroactiva aún
+            ubicacion
           });
 
           // Pausa cortés entre requests
